@@ -157,7 +157,7 @@ namespace Ikarus
                                if (switches.ignoreNextPackage)
                                {
                                    switches.ignoreNextPackage = false;
-                                   MainWindow.getAllDscData = true;
+                                   MainWindow.getAllData = true;
                                    return;
                                }
 

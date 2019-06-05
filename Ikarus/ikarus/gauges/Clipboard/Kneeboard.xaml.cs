@@ -53,7 +53,7 @@ namespace Ikarus
             Focusable = false;
 
             // Load checklists
-            pathToPicture = Environment.CurrentDirectory + "\\Kneeboards\\Mods\\" + MainWindow.readFile + "\\";
+            pathToPicture = Environment.CurrentDirectory + "\\Kneeboards\\Mods\\" + MainWindow.loadCockpit + "\\";
             LoadDirectoryInfo(pathToPicture);
             filenames.Sort();
 
