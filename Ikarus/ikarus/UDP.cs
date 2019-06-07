@@ -47,6 +47,8 @@ namespace Ikarus
             try
             {
                 udpClient = new UdpClient();
+                udpClient.Client.SendBufferSize = 8192;
+
                 ip = IPAddress.Parse(ipAdress.Trim());
                 ipEndPoint = new IPEndPoint(ip, port);
 

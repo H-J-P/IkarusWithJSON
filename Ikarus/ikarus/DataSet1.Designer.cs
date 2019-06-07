@@ -938,7 +938,7 @@ namespace Ikarus {
             
             private global::System.Data.DataColumn columnType;
             
-            private global::System.Data.DataColumn columnDeviceID;
+            private global::System.Data.DataColumn columnID;
             
             private global::System.Data.DataColumn columnFormat;
             
@@ -1099,9 +1099,9 @@ namespace Ikarus {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DeviceIDColumn {
+            public global::System.Data.DataColumn IDColumn {
                 get {
-                    return this.columnDeviceID;
+                    return this.columnID;
                 }
             }
             
@@ -1174,7 +1174,7 @@ namespace Ikarus {
                         string In, 
                         string Out, 
                         string Type, 
-                        string DeviceID, 
+                        string ID, 
                         string Format, 
                         string negateValue) {
                 FunctionsRow rowFunctionsRow = ((FunctionsRow)(this.NewRow()));
@@ -1194,7 +1194,7 @@ namespace Ikarus {
                         In,
                         Out,
                         Type,
-                        DeviceID,
+                        ID,
                         Format,
                         negateValue};
                 if ((parentInstrumentsRowByFK_Instruments_Functions != null)) {
@@ -1237,7 +1237,7 @@ namespace Ikarus {
                 this.columnIn = base.Columns["In"];
                 this.columnOut = base.Columns["Out"];
                 this.columnType = base.Columns["Type"];
-                this.columnDeviceID = base.Columns["DeviceID"];
+                this.columnID = base.Columns["ID"];
                 this.columnFormat = base.Columns["Format"];
                 this.columnnegateValue = base.Columns["negateValue"];
             }
@@ -1275,8 +1275,8 @@ namespace Ikarus {
                 base.Columns.Add(this.columnOut);
                 this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnType);
-                this.columnDeviceID = new global::System.Data.DataColumn("DeviceID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDeviceID);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.columnFormat = new global::System.Data.DataColumn("Format", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFormat);
                 this.columnnegateValue = new global::System.Data.DataColumn("negateValue", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1299,7 +1299,7 @@ namespace Ikarus {
                 this.columnIn.DefaultValue = ((string)("-"));
                 this.columnOut.DefaultValue = ((string)("-"));
                 this.columnType.DefaultValue = ((string)("\"-\""));
-                this.columnDeviceID.DefaultValue = ((string)("\"-\""));
+                this.columnID.DefaultValue = ((string)("\"-\""));
                 this.columnFormat.DefaultValue = ((string)("\"-\""));
                 this.columnnegateValue.DefaultValue = ((string)("0"));
             }
@@ -4005,17 +4005,17 @@ namespace Ikarus {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DeviceID {
+            public string ID {
                 get {
-                    try {
-                        return ((string)(this[this.tableFunctions.DeviceIDColumn]));
+                    if (this.IsIDNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DeviceID\' in table \'Functions\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tableFunctions.IDColumn]));
                     }
                 }
                 set {
-                    this[this.tableFunctions.DeviceIDColumn] = value;
+                    this[this.tableFunctions.IDColumn] = value;
                 }
             }
             
@@ -4244,14 +4244,14 @@ namespace Ikarus {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDeviceIDNull() {
-                return this.IsNull(this.tableFunctions.DeviceIDColumn);
+            public bool IsIDNull() {
+                return this.IsNull(this.tableFunctions.IDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDeviceIDNull() {
-                this[this.tableFunctions.DeviceIDColumn] = global::System.Convert.DBNull;
+            public void SetIDNull() {
+                this[this.tableFunctions.IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

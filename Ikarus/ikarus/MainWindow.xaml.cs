@@ -473,10 +473,47 @@ namespace Ikarus
 
                                            if (connectCounter >= connectCounterMax)
                                            {
-                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
-
                                                ImportExport.LogMessage("Sent json data for cockpit: " + loadCockpit);
 
+                                               string jsonPart = "";
+                                               string jsonDelta = json;
+
+                                               try
+                                               {
+                                                   if (json.Length > 8000)
+                                                   {
+                                                       for (int i = 0; i < json.Length / 8000; i++)
+                                                       {
+                                                           jsonPart = jsonDelta.Substring(0, 8000);
+                                                           jsonDelta = jsonDelta.Substring(8000);
+
+                                                           if (jsonDelta.Length > 8000)
+                                                           {
+                                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
+
+                                                               Thread.Sleep(50);
+                                                           }
+                                                           else
+                                                           {
+                                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
+
+                                                               Thread.Sleep(50);
+
+                                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonDelta);
+
+                                                               break;
+                                                           }
+                                                       }
+                                                   }
+                                                   else
+                                                   {
+                                                       UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
+                                                   }
+                                               }
+                                               catch (Exception f)
+                                               {
+                                                   ImportExport.LogMessage("json split failed with exception: " + f.ToString());
+                                               }
                                                UpdateLog();
 
                                                connectCounter = 0;
@@ -614,7 +651,7 @@ namespace Ikarus
                 dtJson = new DataTable("Data");
                 dtJson.Columns.Add("Name");
                 dtJson.Columns.Add("Type");
-                dtJson.Columns.Add("DeviceID");
+                dtJson.Columns.Add("ID");
                 dtJson.Columns.Add("Format");
                 dtJson.Columns.Add("ExportID");
                 dtJson.Columns.Add("negateValue");
@@ -629,7 +666,13 @@ namespace Ikarus
                     dataRow = dtJson.NewRow();
                     dataRow["Name"] = name + " - " + dataRows[i]["Name"].ToString();
                     dataRow["Type"] = dataRows[i]["Type"].ToString();
-                    dataRow["DeviceID"] = dataRows[i]["DeviceID"].ToString();
+
+                    if (dataRows[i]["ID"].ToString() == "")
+                    {
+                        dataRows[i]["ID"] = "-";
+                    }
+
+                    dataRow["ID"] = dataRows[i]["ID"].ToString() == "-" ? dataRows[i]["Arg_number"].ToString() : dataRows[i]["ID"].ToString();
 
                     dataRow["Format"] = dataRows[i]["Format"].ToString() == "-" ? "float4" : dataRows[i]["Format"].ToString();
 
@@ -649,7 +692,7 @@ namespace Ikarus
                     dataRow = dtJson.NewRow();
                     dataRow["Name"] = dtLamps.Rows[i]["Name"].ToString();
                     dataRow["Type"] = "ID";
-                    dataRow["DeviceID"] = ""; // dtLamps.Rows[i]["DeviceID"].ToString();
+                    dataRow["ID"] = dtLamps.Rows[i]["Arg_number"].ToString();
                     dataRow["Format"] = "float4";
                     dataRow["ExportID"] = dtLamps.Rows[i]["Arg_number"].ToString();
                     dataRow["negateValue"] = "0";
@@ -667,7 +710,7 @@ namespace Ikarus
                     dataRow = dtJson.NewRow();
                     dataRow["Name"] = dtSwitches.Rows[i]["Name"].ToString();
                     dataRow["Type"] = "ID";
-                    dataRow["DeviceID"] = ""; // dtSwitches.Rows[i]["ClickabledataID"].ToString();
+                    dataRow["ID"] = dtSwitches.Rows[i]["DcsID"].ToString();
                     dataRow["Format"] = "float4";
                     dataRow["ExportID"] = dtSwitches.Rows[i]["DcsID"].ToString();
                     dataRow["negateValue"] = "0";

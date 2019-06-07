@@ -217,8 +217,8 @@
                                                     Binding="{Binding Type}"
                                                     Header="Type " />
                                 <DataGridTextColumn Width="80"
-                                                    Binding="{Binding DeviceID}"
-                                                    Header="DeviceID " />
+                                                    Binding="{Binding ID}"
+                                                    Header="ID " />
                                 <DataGridTextColumn Width="80"
                                                     Binding="{Binding Format}"
                                                     Header="Format " />
@@ -876,7 +876,7 @@
                                   Foreground="#FFF9F9F9" />
                         <Label x:Name="labelLight" Content="Light Color ADI" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,79,235" Foreground="#FFECE8E8" HorizontalAlignment="Right" Width="81" Height="16"/>
                         <TextBox x:Name="textBoxLightColor" Text="#95E295" TextWrapping="Wrap" Margin="0,0,79,207" Grid.Column="1" HorizontalAlignment="Right" Width="81" Height="23" VerticalAlignment="Bottom"/>
-                        <Button x:Name="Reconnect" Content="Reconnect to DCS" Grid.Column="1" Margin="0,71,220,0" VerticalAlignment="Top" Click="ReconnectToDCS" HorizontalAlignment="Right" Width="119"/>
+                        <Button x:Name="Reconnect" Content="Reconnect to DCS" Grid.Column="1" HorizontalAlignment="Left" Margin="608,70,0,0" VerticalAlignment="Top" Width="119" Click="ReconnectToDCS"/>
                     </Grid>
                 </TabItem>
                 <TabItem Name="Log"
