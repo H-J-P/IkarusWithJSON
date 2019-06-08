@@ -491,13 +491,13 @@ namespace Ikarus
                                                            {
                                                                UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
 
-                                                               Thread.Sleep(50);
+                                                               Thread.Sleep(20);
                                                            }
                                                            else
                                                            {
                                                                UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
 
-                                                               Thread.Sleep(50);
+                                                               Thread.Sleep(20);
 
                                                                UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonDelta);
 
@@ -649,7 +649,7 @@ namespace Ikarus
             try
             {
                 dtJson = new DataTable("Data");
-                dtJson.Columns.Add("Name");
+                dtJson.Columns.Add("Description");
                 dtJson.Columns.Add("Type");
                 dtJson.Columns.Add("ID");
                 dtJson.Columns.Add("Format");
@@ -664,7 +664,7 @@ namespace Ikarus
                     string name = gauges[0]["Name"].ToString();
 
                     dataRow = dtJson.NewRow();
-                    dataRow["Name"] = name + " - " + dataRows[i]["Name"].ToString();
+                    dataRow["Description"] = name + " - " + dataRows[i]["Name"].ToString();
                     dataRow["Type"] = dataRows[i]["Type"].ToString();
 
                     if (dataRows[i]["ID"].ToString() == "")
@@ -690,7 +690,7 @@ namespace Ikarus
                 for (int i = 0; i < dtLamps.Rows.Count; i++)
                 {
                     dataRow = dtJson.NewRow();
-                    dataRow["Name"] = dtLamps.Rows[i]["Name"].ToString();
+                    dataRow["Description"] = dtLamps.Rows[i]["Name"].ToString();
                     dataRow["Type"] = "ID";
                     dataRow["ID"] = dtLamps.Rows[i]["Arg_number"].ToString();
                     dataRow["Format"] = "float4";
@@ -708,7 +708,7 @@ namespace Ikarus
                 for (int i = 0; i < dtSwitches.Rows.Count; i++)
                 {
                     dataRow = dtJson.NewRow();
-                    dataRow["Name"] = dtSwitches.Rows[i]["Name"].ToString();
+                    dataRow["Description"] = dtSwitches.Rows[i]["Name"].ToString();
                     dataRow["Type"] = "ID";
                     dataRow["ID"] = dtSwitches.Rows[i]["DcsID"].ToString();
                     dataRow["Format"] = "float4";
