@@ -216,14 +216,14 @@ namespace Ikarus
                                if (textForDisplay.Length > numberOfSegments)
                                    textForDisplay = textForDisplay.Substring(0, numberOfSegments);
 
-                               Segments.Text = textForDisplay;
+                               Segments.Text = helper.CleanUpDisplayString(textForDisplay);
                            }
                            catch
                            {
                                if (textForDisplay.Length > numberOfSegments)
                                    textForDisplay = textForDisplay.Substring(0, numberOfSegments);
 
-                               Segments.Text = textForDisplay;
+                               Segments.Text = helper.CleanUpDisplayString(textForDisplay);
                                return;
                            }
                        }));

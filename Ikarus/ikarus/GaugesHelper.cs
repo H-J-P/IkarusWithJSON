@@ -56,6 +56,14 @@ namespace Ikarus
         // https://www.youtube.com/watch?v=8DwJ_3EPJAI
         // https://www.youtube.com/watch?v=8YLzpo09Wfw
 
+        public string CleanUpDisplayString(string cleanit)
+        {
+            cleanit = cleanit.Replace('"'.ToString(), "");
+            cleanit = cleanit.Replace("'\'".ToString(), "");
+
+            return cleanit;
+        }
+
         public void MakeDraggable(System.Windows.UIElement moveThisElement, System.Windows.UIElement movedByElement)
         {
             TranslateTransform trUsercontrol = new TranslateTransform(0, 0);

@@ -31,13 +31,13 @@ namespace Ikarus
         public enum State
         {
             sendJson,
-            init,
+            initConfig,
             sendConfig,
             reset,
             running,
             stop
         }
-        private State timerstate = State.sendConfig;
+        private State timerstate = State.initConfig;
 
         private bool cleanupMemory = true;
         public static bool cockpitWindowActiv = false;
@@ -126,6 +126,7 @@ namespace Ikarus
         private int selectedWindows = -1;
         private int windowID = 0;
         private int configID = -1;
+        private int jsonPackageSize = 8000;
 
         private string identifier = "";
         private string background = "";
@@ -171,6 +172,7 @@ namespace Ikarus
 
                 File.Text = "";
                 IPAddess.Text = "127.0.0.1";
+                Ikarus_IPAddess.Text = "127.0.0.1";
                 PortListener.Text = "1625";
                 portListener = PortListener.Text;
                 PortSender.Text = "26027";
@@ -203,12 +205,10 @@ namespace Ikarus
                             {
                                 dtConfig.Rows[0]["JSON"] = false;
                             }
-                            //jsonChecked = Convert.ToBoolean(dtConfig.Rows[0]["JSON"]);
-                            //checkJSON.IsChecked = jsonChecked;
 
-                            //if (jsonChecked) { SendJSON.Visibility = Visibility.Visible; }
-                            //else { SendJSON.Visibility = Visibility.Hidden; }
+                            Ikarus_IPAddess.Text = dtConfig.Rows[0][12].ToString();
 
+                            if (Ikarus_IPAddess.Text =="") { Ikarus_IPAddess.Text = "127.0.0.1"; }
 
                             if (dbFilename.Length > 0)
                             {
@@ -344,7 +344,7 @@ namespace Ikarus
                            udpThread.Start();
                        }));
 
-            timerstate = State.sendConfig;
+            timerstate = State.initConfig;
             StartTimer();
             StartUDPTimer();
 
@@ -420,6 +420,30 @@ namespace Ikarus
 
                            #region Communication with exportscript
 
+                           if (timerstate == State.initConfig)
+                           {
+                               if (lStateEnabled)
+                               {
+                                   lStateEnabled = false;
+
+                                   try
+                                   {
+                                       package = "{'Config': {'Name': 'Ikarus', 'IP': '" + Ikarus_IPAddess.Text.Trim() + "', 'Port': '" + PortListener.Text.Trim() + "'}}";
+
+                                       package = package.Replace("'", '"'.ToString());
+
+                                       ImportExport.LogMessage("Request new connection:");
+
+                                       ImportExport.LogMessage("Sent: " + package);
+                                   }
+                                   catch { }
+
+                                   timerstate = State.sendConfig;
+
+                                   lStateEnabled = true;
+                               }
+                           }
+
                            if (timerstate == State.sendConfig)
                            {
                                if (lStateEnabled)
@@ -434,13 +458,8 @@ namespace Ikarus
 
                                            if (connectCounter >= connectCounterMax)
                                            {
-                                               package = "{'Config': {'Name': 'Ikarus', 'IP': '" + IPAddess.Text.Trim() + "', 'Port': '" + PortListener.Text.Trim() + "'}}";
-
-                                               package = package.Replace("'", '"'.ToString());
 
                                                UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), package);
-
-                                               if (!detailLog && !switchLog) { ImportExport.LogMessage("Sent: " + package); }
 
                                                connectCounter = 0;
 
@@ -473,31 +492,33 @@ namespace Ikarus
 
                                            if (connectCounter >= connectCounterMax)
                                            {
-                                               ImportExport.LogMessage("Sent json data for cockpit: " + loadCockpit);
+                                               ImportExport.LogMessage("Sent json data for cockpit: " + loadCockpit + " -> " + json.Length + " Bytes");
 
                                                string jsonPart = "";
                                                string jsonDelta = json;
 
+                                               if (detailLog || switchLog) { ImportExport.LogMessage(json, false); }
+
                                                try
                                                {
-                                                   if (json.Length > 8000)
+                                                   if (json.Length > jsonPackageSize)
                                                    {
-                                                       for (int i = 0; i < json.Length / 8000; i++)
+                                                       for (int i = 0; i < json.Length / jsonPackageSize + 1; i++)
                                                        {
-                                                           jsonPart = jsonDelta.Substring(0, 8000);
-                                                           jsonDelta = jsonDelta.Substring(8000);
+                                                           jsonPart = jsonDelta.Substring(0, jsonPackageSize);
+                                                           jsonDelta = jsonDelta.Substring(jsonPackageSize);
 
-                                                           if (jsonDelta.Length > 8000)
+                                                           if (jsonDelta.Length > jsonPackageSize)
                                                            {
                                                                UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
 
-                                                               Thread.Sleep(20);
+                                                               Thread.Sleep(10);
                                                            }
                                                            else
                                                            {
                                                                UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
 
-                                                               Thread.Sleep(20);
+                                                               Thread.Sleep(10);
 
                                                                UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonDelta);
 
@@ -664,28 +685,22 @@ namespace Ikarus
                     string name = gauges[0]["Name"].ToString();
 
                     dataRow = dtJson.NewRow();
-                    dataRow["Description"] = name + " - " + dataRows[i]["Name"].ToString();
+
+                    dataRow["Description"] = name;
+                    //dataRow["Description"] = name + " - " + dataRows[i]["Name"].ToString();
+                    //dataRow["Description"] = dataRows[i]["Name"].ToString().Substring(0, 4);
+
                     dataRow["Type"] = dataRows[i]["Type"].ToString();
 
-                    if (dataRows[i]["ID"].ToString() == "")
-                    {
-                        dataRows[i]["ID"] = "-";
-                    }
+                    if (dataRows[i]["ID"].ToString() == "") { dataRows[i]["ID"] = "-"; }
 
                     dataRow["ID"] = dataRows[i]["ID"].ToString() == "-" ? dataRows[i]["Arg_number"].ToString() : dataRows[i]["ID"].ToString();
-
                     dataRow["Format"] = dataRows[i]["Format"].ToString() == "-" ? "float4" : dataRows[i]["Format"].ToString();
-
                     dataRow["ExportID"] = dataRows[i]["Arg_number"].ToString();
                     dataRow["negateValue"] = dataRows[i]["negateValue"].ToString();
+
                     dtJson.Rows.Add(dataRow);
                 }
-                //dtJson.AcceptChanges();
-
-                //dtjsonLamps = new DataTable("Lamp");
-                //dtjsonLamps.Columns.Add("Name");
-                //dtjsonLamps.Columns.Add("Type");
-                //dtjsonLamps.Columns.Add("ExportID");
 
                 for (int i = 0; i < dtLamps.Rows.Count; i++)
                 {
@@ -698,30 +713,27 @@ namespace Ikarus
                     dataRow["negateValue"] = "0";
                     dtJson.Rows.Add(dataRow);
                 }
-                //dtJson.AcceptChanges();
-
-                //dtjsonSwitches = new DataTable("Switch");
-                //dtjsonSwitches.Columns.Add("Name");
-                //dtjsonSwitches.Columns.Add("Type");
-                //dtjsonSwitches.Columns.Add("ExportID");
 
                 for (int i = 0; i < dtSwitches.Rows.Count; i++)
                 {
-                    dataRow = dtJson.NewRow();
-                    dataRow["Description"] = dtSwitches.Rows[i]["Name"].ToString();
-                    dataRow["Type"] = "ID";
-                    dataRow["ID"] = dtSwitches.Rows[i]["DcsID"].ToString();
-                    dataRow["Format"] = "float4";
-                    dataRow["ExportID"] = dtSwitches.Rows[i]["DcsID"].ToString();
-                    dataRow["negateValue"] = "0";
-                    dtJson.Rows.Add(dataRow);
+                    if (dtSwitches.Rows[i]["DcsID"].ToString() != "")
+                    {
+                        dataRow = dtJson.NewRow();
+
+                        dataRow["Description"] = dtSwitches.Rows[i]["Name"].ToString();
+                        dataRow["Type"] = "ID";
+                        dataRow["ID"] = dtSwitches.Rows[i]["DcsID"].ToString();
+                        dataRow["Format"] = "float4";
+                        dataRow["ExportID"] = dtSwitches.Rows[i]["DcsID"].ToString();
+                        dataRow["negateValue"] = "0";
+
+                        dtJson.Rows.Add(dataRow);
+                    }
                 }
 
                 dtJson.AcceptChanges();
 
                 dsJSON = new DataSet();
-                //dsJSON.Tables.Add(dtjsonLamps);
-                //dsJSON.Tables.Add(dtjsonSwitches);
                 dsJSON.Tables.Add(dtJson);
 
                 json = JsonConvert.SerializeObject(dsJSON, Formatting.Indented);
@@ -813,9 +825,9 @@ namespace Ikarus
         {
             try
             {
-                if (GetCockpit(searchStringForFile, ref receivedData))
+                if (GetIdent(searchStringForFile, ref receivedData))
                 {
-                    ImportExport.LogMessage("DCS start command for modul: " + loadCockpit);
+                    //ImportExport.LogMessage("DCS start command for modul: " + loadCockpit);
 
                     if (loadCockpit.Length > 0 && loadCockpit != lastCockpit)
                     {
@@ -829,6 +841,10 @@ namespace Ikarus
                             ImportExport.LogMessage("File not found: " + loadCockpit + ".ikarus ... ", true);
                         }
                     }
+                    else
+                    {
+                        GenerateJSONDataset();
+                    }  
                 }
             }
             catch (Exception ex) { ImportExport.LogMessage("Load Cockpit: " + ex.ToString()); }
@@ -845,6 +861,7 @@ namespace Ikarus
                     try
                     {
                         buffer.Append((ImportExport.logItems[i] + newline).ToString());
+                        //buffer.Append((ImportExport.logItems[i]).ToString());
                     }
                     catch
                     {
@@ -858,7 +875,7 @@ namespace Ikarus
 
         private static void DatabaseResetValue()
         {
-            ImportExport.LogMessage("Reset Cockpit .. ");
+            //ImportExport.LogMessage("Reset Cockpit .. ");
 
             for (int i = 0; i < dtInstrumentFunctions.Rows.Count; i++)
             {
@@ -874,7 +891,7 @@ namespace Ikarus
                     if (DBNull.Value.Equals(dtInstrumentFunctions.Rows[i]["Type"]))
                     {
                         dtInstrumentFunctions.Rows[i]["Type"] = "ID";
-                        dtInstrumentFunctions.Rows[i]["DeviceID"] = "-";
+                        dtInstrumentFunctions.Rows[i]["ID"] = "-";
                         dtInstrumentFunctions.Rows[i]["Format"] = "-";
                         dtInstrumentFunctions.Rows[i]["negateValue"] = "0";
                     }
@@ -963,7 +980,7 @@ namespace Ikarus
             GenerateJSONDataset();
         }
 
-        private bool GetCockpit(string ID, ref string gotData)
+        private bool GetIdent(string ID, ref string gotData)
         {
             string[] receivedItems = gotData.Split(':');
 
@@ -975,9 +992,20 @@ namespace Ikarus
                     {
                         loadCockpit = receivedItems[n].Substring(receivedItems[n].IndexOf("=", 0) + 1);
                         loadCockpit = loadCockpit.Replace('"'.ToString(), "");
-                        ImportExport.LogMessage("Got data for cockpit: " + loadCockpit);
+                        ImportExport.LogMessage("DCS start command for modul: " + loadCockpit);
                         json = "";
                         return true;
+                    }
+                    if (ID == "Map")
+                    {
+                        map = receivedItems[n].Substring(receivedItems[n].IndexOf("=", 0) + 1);
+                        map = map.Replace('"'.ToString(), "");
+                        ImportExport.LogMessage("Got data for map used: " + map);
+                        return true;
+                    }
+                    if (ID == "DCS")
+                    {
+
                     }
                 }
             }
@@ -1073,12 +1101,17 @@ namespace Ikarus
                     GetMap(ref receivedData);
                 }
 
-                if (receivedData.IndexOf("DCS=stop") != -1)
+                if (receivedData.IndexOf(@"DCS=""Stop""") != -1)
                 {
-                    configID = -1;
-                    timerstate = State.sendConfig;
+                    ImportExport.LogMessage(@"DCS=""Stop""", true);
+
+                    ImportExport.LogMessage("Reset Cockpit:", true);
                     dbFilename = loadCockpit + ".ikarus";
                     LoadConfiguration(loadCockpit);
+
+                    configID = -1;
+                    timerstate = State.initConfig;
+
                     MemoryManagement.Reduce();
                 }
 
@@ -2181,6 +2214,7 @@ namespace Ikarus
                     dtWindows.Rows[0][9] = textBoxLightColor.Text;
                     dtConfig.Rows[0][10] = checkBoxShadow.IsChecked;
                     dtConfig.Rows[0][11] = jsonChecked;
+                    dtConfig.Rows[0][12] = Ikarus_IPAddess.Text;
                 }
                 catch { }
 
@@ -2467,7 +2501,7 @@ namespace Ikarus
         private void ReconnectToDCS(object sender, RoutedEventArgs e)
         {
             configID = -1;
-            timerstate = State.sendConfig;
+            timerstate = State.initConfig;
             loadCockpit = "";
             lastCockpit = "-";
             //dbFilename = loadCockpit + ".ikarus";
