@@ -459,7 +459,7 @@ namespace Ikarus
                                            if (connectCounter >= connectCounterMax)
                                            {
 
-                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), package);
+                                               if (!detailLog && !switchLog) { UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), package); }
 
                                                connectCounter = 0;
 
@@ -484,69 +484,70 @@ namespace Ikarus
                                {
                                    lStateEnabled = false;
 
-                                   try
-                                   {
-                                       if (loadCockpit != "" && json != "" && configID != -1)
-                                       {
-                                           connectCounter++;
+                                   //try
+                                   //{
+                                   //    if (loadCockpit != "" && json != "" && configID != -1)
+                                   //    {
+                                   //        connectCounter++;
 
-                                           if (connectCounter >= connectCounterMax)
-                                           {
-                                               ImportExport.LogMessage("Sent json data for cockpit: " + loadCockpit + " -> " + json.Length + " Bytes");
+                                   //        if (connectCounter >= connectCounterMax)
+                                   //        {
+                                   //            ImportExport.LogMessage("Sent json data for cockpit: " + loadCockpit + " -> " + json.Length + " Bytes");
 
-                                               string jsonPart = "";
-                                               string jsonDelta = json;
+                                   //            string jsonPart = "";
+                                   //            string jsonDelta = json;
 
-                                               if (detailLog || switchLog) { ImportExport.LogMessage(json, false); }
+                                   //            if (detailLog || switchLog) { ImportExport.LogMessage(json, false); }
 
-                                               try
-                                               {
-                                                   if (json.Length > jsonPackageSize)
-                                                   {
-                                                       for (int i = 0; i < json.Length / jsonPackageSize + 1; i++)
-                                                       {
-                                                           jsonPart = jsonDelta.Substring(0, jsonPackageSize);
-                                                           jsonDelta = jsonDelta.Substring(jsonPackageSize);
+                                   //            try
+                                   //            {
+                                   //                if (json.Length > jsonPackageSize)
+                                   //                {
+                                   //                    for (int i = 0; i < json.Length / jsonPackageSize + 1; i++)
+                                   //                    {
+                                   //                        jsonPart = jsonDelta.Substring(0, jsonPackageSize);
+                                   //                        jsonDelta = jsonDelta.Substring(jsonPackageSize);
 
-                                                           if (jsonDelta.Length > jsonPackageSize)
-                                                           {
-                                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
+                                   //                        if (jsonDelta.Length > jsonPackageSize)
+                                   //                        {
+                                   //                            UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
 
-                                                               Thread.Sleep(10);
-                                                           }
-                                                           else
-                                                           {
-                                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
+                                   //                            Thread.Sleep(10);
+                                   //                        }
+                                   //                        else
+                                   //                        {
+                                   //                            UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonPart);
 
-                                                               Thread.Sleep(10);
+                                   //                            Thread.Sleep(10);
 
-                                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonDelta);
+                                   //                            UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), jsonDelta);
 
-                                                               break;
-                                                           }
-                                                       }
-                                                   }
-                                                   else
-                                                   {
-                                                       UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
-                                                   }
-                                               }
-                                               catch (Exception f)
-                                               {
-                                                   ImportExport.LogMessage("json split failed with exception: " + f.ToString());
-                                               }
-                                               UpdateLog();
+                                   //                            break;
+                                   //                        }
+                                   //                    }
+                                   //                }
+                                   //                else
+                                   //                {
+                                   //                    UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
+                                   //                }
+                                   //            }
+                                   //            catch (Exception f)
+                                   //            {
+                                   //                ImportExport.LogMessage("json split failed with exception: " + f.ToString());
+                                   //            }
+                                   //            UpdateLog();
 
-                                               connectCounter = 0;
+                                   //            connectCounter = 0;
 
-                                               timerstate = State.running;
-                                           }
-                                       }
-                                       else
-                                       {
-                                       }
-                                   }
-                                   catch { }
+                                   //            timerstate = State.running;
+                                   //        }
+                                   //    }
+                                   //    else
+                                   //    {
+                                   //    }
+                                   //}
+                                   //catch { }
+                                   timerstate = State.running;
 
                                    lStateEnabled = true;
                                }
@@ -667,85 +668,163 @@ namespace Ikarus
 
         private void GenerateJSONDataset()
         {
+            int maxRows = 35;
+
             try
             {
-                dtJson = new DataTable("Data");
-                dtJson.Columns.Add("Description");
-                dtJson.Columns.Add("Type");
-                dtJson.Columns.Add("ID");
-                dtJson.Columns.Add("Format");
-                dtJson.Columns.Add("ExportID");
-                dtJson.Columns.Add("negateValue");
-
-                dataRows = dtInstrumentFunctions.Select("Name Like '*'", "IDInst ASC");
-
-                for (int i = 0; i < dataRows.Length; i++)
+                if (configID != -1)
                 {
-                    DataRow[] gauges = dtInstruments.Select("IDInst ='" + dataRows[i]["IDInst"].ToString() + "'");
-                    string name = gauges[0]["Name"].ToString();
+                    dtJson = new DataTable("Data");
+                    dtJson.Columns.Add("Description");
+                    dtJson.Columns.Add("Type");
+                    dtJson.Columns.Add("ID");
+                    dtJson.Columns.Add("Format");
+                    dtJson.Columns.Add("ExportID");
+                    dtJson.Columns.Add("negateValue");
 
-                    dataRow = dtJson.NewRow();
+                    dataRows = dtInstrumentFunctions.Select("Name Like '*'", "IDInst ASC");
 
-                    dataRow["Description"] = name;
-                    //dataRow["Description"] = name + " - " + dataRows[i]["Name"].ToString();
-                    //dataRow["Description"] = dataRows[i]["Name"].ToString().Substring(0, 4);
-
-                    dataRow["Type"] = dataRows[i]["Type"].ToString();
-
-                    if (dataRows[i]["ID"].ToString() == "") { dataRows[i]["ID"] = "-"; }
-
-                    dataRow["ID"] = dataRows[i]["ID"].ToString() == "-" ? dataRows[i]["Arg_number"].ToString() : dataRows[i]["ID"].ToString();
-                    dataRow["Format"] = dataRows[i]["Format"].ToString() == "-" ? "float4" : dataRows[i]["Format"].ToString();
-                    dataRow["ExportID"] = dataRows[i]["Arg_number"].ToString();
-                    dataRow["negateValue"] = dataRows[i]["negateValue"].ToString();
-
-                    dtJson.Rows.Add(dataRow);
-                }
-
-                for (int i = 0; i < dtLamps.Rows.Count; i++)
-                {
-                    dataRow = dtJson.NewRow();
-                    dataRow["Description"] = dtLamps.Rows[i]["Name"].ToString();
-                    dataRow["Type"] = "ID";
-                    dataRow["ID"] = dtLamps.Rows[i]["Arg_number"].ToString();
-                    dataRow["Format"] = "float4";
-                    dataRow["ExportID"] = dtLamps.Rows[i]["Arg_number"].ToString();
-                    dataRow["negateValue"] = "0";
-                    dtJson.Rows.Add(dataRow);
-                }
-
-                for (int i = 0; i < dtSwitches.Rows.Count; i++)
-                {
-                    if (dtSwitches.Rows[i]["DcsID"].ToString() != "")
+                    for (int i = 0; i < dataRows.Length; i++)
                     {
+                        DataRow[] gauges = dtInstruments.Select("IDInst ='" + dataRows[i]["IDInst"].ToString() + "'");
+                        string name = gauges[0]["Name"].ToString();
+
                         dataRow = dtJson.NewRow();
 
-                        dataRow["Description"] = dtSwitches.Rows[i]["Name"].ToString();
-                        dataRow["Type"] = "ID";
-                        dataRow["ID"] = dtSwitches.Rows[i]["DcsID"].ToString();
-                        dataRow["Format"] = "float4";
-                        dataRow["ExportID"] = dtSwitches.Rows[i]["DcsID"].ToString();
-                        dataRow["negateValue"] = "0";
+                        dataRow["Description"] = name;
+                        //dataRow["Description"] = name + " - " + dataRows[i]["Name"].ToString();
+                        //dataRow["Description"] = dataRows[i]["Name"].ToString().Substring(0, 4);
+
+                        dataRow["Type"] = dataRows[i]["Type"].ToString();
+
+                        if (dataRows[i]["ID"].ToString() == "") { dataRows[i]["ID"] = "-"; }
+
+                        dataRow["ID"] = dataRows[i]["ID"].ToString() == "-" ? dataRows[i]["Arg_number"].ToString() : dataRows[i]["ID"].ToString();
+                        dataRow["Format"] = dataRows[i]["Format"].ToString() == "-" ? "float4" : dataRows[i]["Format"].ToString();
+                        dataRow["ExportID"] = dataRows[i]["Arg_number"].ToString();
+                        dataRow["negateValue"] = dataRows[i]["negateValue"].ToString();
 
                         dtJson.Rows.Add(dataRow);
+
+                        if (dtJson.Rows.Count > maxRows)
+                        {
+                            dtJson.AcceptChanges();
+
+                            GenerateAndSentJson(dtJson);
+
+                            dtJson.Clear();
+
+                            Thread.Sleep(10);
+                        }
                     }
+
+                    dtJson.AcceptChanges();
+
+                    GenerateAndSentJson(dtJson);
+
+                    dtJson.Clear();
+
+                    Thread.Sleep(10);
+
+                    for (int i = 0; i < dtLamps.Rows.Count; i++)
+                    {
+                        dataRow = dtJson.NewRow();
+                        dataRow["Description"] = dtLamps.Rows[i]["Name"].ToString();
+                        dataRow["Type"] = "ID";
+                        dataRow["ID"] = dtLamps.Rows[i]["Arg_number"].ToString();
+                        dataRow["Format"] = "float4";
+                        dataRow["ExportID"] = dtLamps.Rows[i]["Arg_number"].ToString();
+                        dataRow["negateValue"] = "0";
+                        dtJson.Rows.Add(dataRow);
+
+                        if (dtJson.Rows.Count > maxRows)
+                        {
+                            dtJson.AcceptChanges();
+
+                            GenerateAndSentJson(dtJson);
+
+                            dtJson.Clear();
+
+                            Thread.Sleep(10);
+                        }
+                    }
+
+                    dtJson.AcceptChanges();
+
+                    GenerateAndSentJson(dtJson);
+
+                    dtJson.Clear();
+
+                    Thread.Sleep(10);
+
+
+                    for (int i = 0; i < dtSwitches.Rows.Count; i++)
+                    {
+                        if (dtSwitches.Rows[i]["DcsID"].ToString() != "")
+                        {
+                            dataRow = dtJson.NewRow();
+
+                            dataRow["Description"] = dtSwitches.Rows[i]["Name"].ToString();
+                            dataRow["Type"] = "ID";
+                            dataRow["ID"] = dtSwitches.Rows[i]["DcsID"].ToString();
+                            dataRow["Format"] = "float4";
+                            dataRow["ExportID"] = dtSwitches.Rows[i]["DcsID"].ToString();
+                            dataRow["negateValue"] = "0";
+
+                            dtJson.Rows.Add(dataRow);
+
+                            if (dtJson.Rows.Count > maxRows)
+                            {
+                                dtJson.AcceptChanges();
+
+                                GenerateAndSentJson(dtJson);
+
+                                dtJson.Clear();
+
+                                Thread.Sleep(10);
+                            }
+                        }
+                    }
+
+                    dtJson.AcceptChanges();
+
+                    GenerateAndSentJson(dtJson);
+
+                    dtJson.Clear();
                 }
-
-                dtJson.AcceptChanges();
-
-                dsJSON = new DataSet();
-                dsJSON.Tables.Add(dtJson);
-
-                json = JsonConvert.SerializeObject(dsJSON, Formatting.Indented);
-
-                string configIDString = "{'ConfigID': " + configID + ", ";
-                configIDString = configIDString.Replace("'", '"'.ToString());
-
-                json = configIDString + json.Substring(1, json.Length - 1);
             }
             catch (Exception ex)
             {
                 ImportExport.LogMessage("GenerateJSONDataset: " + ex.ToString());
+            }
+        }
+
+        private void GenerateAndSentJson(DataTable dtJson)
+        {
+            try
+            {
+                if (dtJson.Rows.Count > 0)
+                {
+                    dsJSON = new DataSet();
+                    dsJSON.Tables.Add(dtJson);
+
+                    json = JsonConvert.SerializeObject(dsJSON, Formatting.Indented);
+
+                    dsJSON.Tables.Remove(dtJson);
+
+                    string configIDString = "{'ConfigID': " + configID + ", ";
+                    configIDString = configIDString.Replace("'", '"'.ToString());
+
+                    json = configIDString + json.Substring(1, json.Length - 1);
+
+                    UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
+
+                    if (!detailLog && !switchLog) { ImportExport.LogMessage("Send json data for cockpit: " + loadCockpit + " -> " + json.Length + " bytes."); }
+                }
+            }
+            catch (Exception ex)
+            {
+                ImportExport.LogMessage("GenerateAndSentJson: " + ex.ToString());
             }
         }
 
@@ -954,18 +1033,21 @@ namespace Ikarus
 
                         if (dtMasterSwitches != null)
                         {
-                            dataRowsMasterSwitches = dtMasterSwitches.Select("ID='" + switches[i].clickabledataID.ToString() + "'");
-
-                            if (dataRowsMasterSwitches.Length > 0)
+                            if (switches[i].clickabledataID.ToString() != "0")
                             {
-                                if (dataRowsMasterSwitches[0]["DcsID"].ToString() != "")
-                                    switches[i].dcsID = Convert.ToInt32(dataRowsMasterSwitches[0]["DcsID"]);
+                                dataRowsMasterSwitches = dtMasterSwitches.Select("ID='" + switches[i].clickabledataID.ToString() + "'");
 
-                                if (dataRowsMasterSwitches[0]["DeviceID"].ToString() != "")
-                                    switches[i].deviceID = Convert.ToInt32(dataRowsMasterSwitches[0]["DeviceID"]);
+                                if (dataRowsMasterSwitches.Length > 0)
+                                {
+                                    if (dataRowsMasterSwitches[0]["DcsID"].ToString() != "")
+                                        switches[i].dcsID = Convert.ToInt32(dataRowsMasterSwitches[0]["DcsID"]);
 
-                                if (dataRowsMasterSwitches[0]["ButtonID"].ToString() != "")
-                                    switches[i].buttonID = Convert.ToInt32(dataRowsMasterSwitches[0]["ButtonID"]);
+                                    if (dataRowsMasterSwitches[0]["DeviceID"].ToString() != "")
+                                        switches[i].deviceID = Convert.ToInt32(dataRowsMasterSwitches[0]["DeviceID"]);
+
+                                    if (dataRowsMasterSwitches[0]["ButtonID"].ToString() != "")
+                                        switches[i].buttonID = Convert.ToInt32(dataRowsMasterSwitches[0]["ButtonID"]);
+                                }
                             }
                         }
                     }
@@ -1107,9 +1189,10 @@ namespace Ikarus
 
                     ImportExport.LogMessage("Reset Cockpit:", true);
                     dbFilename = loadCockpit + ".ikarus";
-                    LoadConfiguration(loadCockpit);
 
                     configID = -1;
+                    LoadConfiguration(loadCockpit);
+
                     timerstate = State.initConfig;
 
                     MemoryManagement.Reduce();
