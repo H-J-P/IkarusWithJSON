@@ -208,7 +208,7 @@ namespace Ikarus
 
                             Ikarus_IPAddess.Text = dtConfig.Rows[0][12].ToString();
 
-                            if (Ikarus_IPAddess.Text =="") { Ikarus_IPAddess.Text = "127.0.0.1"; }
+                            if (Ikarus_IPAddess.Text == "") { Ikarus_IPAddess.Text = "127.0.0.1"; }
 
                             if (dbFilename.Length > 0)
                             {
@@ -459,7 +459,7 @@ namespace Ikarus
                                            if (connectCounter >= connectCounterMax)
                                            {
 
-                                               if (!detailLog && !switchLog) { UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), package); }
+                                               UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), package);
 
                                                connectCounter = 0;
 
@@ -668,7 +668,7 @@ namespace Ikarus
 
         private void GenerateJSONDataset()
         {
-            int maxRows = 35;
+            int maxRows = 50;
 
             try
             {
@@ -689,11 +689,11 @@ namespace Ikarus
                         DataRow[] gauges = dtInstruments.Select("IDInst ='" + dataRows[i]["IDInst"].ToString() + "'");
                         string name = gauges[0]["Name"].ToString();
 
+                        if (name.Length > 32) { name.Substring(0, 32); }
+
                         dataRow = dtJson.NewRow();
 
                         dataRow["Description"] = name;
-                        //dataRow["Description"] = name + " - " + dataRows[i]["Name"].ToString();
-                        //dataRow["Description"] = dataRows[i]["Name"].ToString().Substring(0, 4);
 
                         dataRow["Type"] = dataRows[i]["Type"].ToString();
 
@@ -718,13 +718,13 @@ namespace Ikarus
                         }
                     }
 
-                    dtJson.AcceptChanges();
+                    //dtJson.AcceptChanges();
 
-                    GenerateAndSentJson(dtJson);
+                    //GenerateAndSentJson(dtJson);
 
-                    dtJson.Clear();
+                    //dtJson.Clear();
 
-                    Thread.Sleep(10);
+                    //Thread.Sleep(10);
 
                     for (int i = 0; i < dtLamps.Rows.Count; i++)
                     {
@@ -749,13 +749,13 @@ namespace Ikarus
                         }
                     }
 
-                    dtJson.AcceptChanges();
+                    //dtJson.AcceptChanges();
 
-                    GenerateAndSentJson(dtJson);
+                    //GenerateAndSentJson(dtJson);
 
-                    dtJson.Clear();
+                    //dtJson.Clear();
 
-                    Thread.Sleep(10);
+                    //Thread.Sleep(10);
 
 
                     for (int i = 0; i < dtSwitches.Rows.Count; i++)
@@ -808,7 +808,7 @@ namespace Ikarus
                     dsJSON = new DataSet();
                     dsJSON.Tables.Add(dtJson);
 
-                    json = JsonConvert.SerializeObject(dsJSON, Formatting.Indented);
+                    json = JsonConvert.SerializeObject(dsJSON, Formatting.None);
 
                     dsJSON.Tables.Remove(dtJson);
 
@@ -906,24 +906,23 @@ namespace Ikarus
             {
                 if (GetIdent(searchStringForFile, ref receivedData))
                 {
-                    //ImportExport.LogMessage("DCS start command for modul: " + loadCockpit);
-
                     if (loadCockpit.Length > 0 && loadCockpit != lastCockpit)
                     {
                         if (System.IO.File.Exists(currentDirectory + "\\" + loadCockpit + ".ikarus"))
                         {
                             dbFilename = loadCockpit + ".ikarus";
                             LoadConfiguration(loadCockpit);
+                            GenerateJSONDataset();
                         }
                         else
                         {
                             ImportExport.LogMessage("File not found: " + loadCockpit + ".ikarus ... ", true);
                         }
                     }
-                    else
-                    {
-                        GenerateJSONDataset();
-                    }  
+                    //else
+                    //{
+                    //    GenerateJSONDataset();
+                    //}
                 }
             }
             catch (Exception ex) { ImportExport.LogMessage("Load Cockpit: " + ex.ToString()); }
@@ -1059,7 +1058,7 @@ namespace Ikarus
             }
             catch (Exception e) { ImportExport.LogMessage("FillClasses problem .. " + e.ToString()); }
 
-            GenerateJSONDataset();
+            //GenerateJSONDataset();
         }
 
         private bool GetIdent(string ID, ref string gotData)
