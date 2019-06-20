@@ -89,7 +89,8 @@ namespace Ikarus
 
                                if (vals.Length > 0)
                                {
-                                   valueHour = vals[0];
+                                   valueHour = helper.CleanUpDisplayString(vals[0]);
+
                                    hours = (valueHour[0].ToString() + valueHour[1].ToString()).ToString();
                                    minutes = (valueHour[2].ToString() + valueHour[3].ToString()).ToString();
                                    seconds = (valueHour[4].ToString() + valueHour[5].ToString()).ToString();

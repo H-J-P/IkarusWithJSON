@@ -910,10 +910,9 @@
                                  Foreground="Black" />
                         <Button Name="Copy"
                                 Height="24"
-                                Margin="0,0,11,0"
                                 VerticalAlignment="Bottom"
                                 Click="Button_Copy_Click"
-                                Content="Copy" HorizontalAlignment="Right" Width="90" />
+                                Content="Copy" HorizontalAlignment="Right" Width="90" Margin="0,0,-8,0" />
                         <Button Name="LogRefresh"
                                 Width="110"
                                 Height="24"
@@ -983,11 +982,11 @@
                     ToolTip="Ikarus Screen Capture" HorizontalAlignment="Right" Width="90" />
             <Label Name="Version"
                    Height="19"
-                   Margin="508,0,418,10"
+                   Margin="508,0,0,10"
                    VerticalAlignment="Bottom"
                    Content="Copyright / Version"
                    HorizontalContentAlignment="Center"
-                   Foreground="#FFD8BC05" RenderTransformOrigin="1.004,0.526" HorizontalAlignment="Center" Width="196" />
+                   Foreground="#FFD8BC05" RenderTransformOrigin="1.004,0.526" HorizontalAlignment="Left" Width="196" />
             <Label Name="lbEditMode"
                    Height="19"
                    Margin="315,0,0,10"
