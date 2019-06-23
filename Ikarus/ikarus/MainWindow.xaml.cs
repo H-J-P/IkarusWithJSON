@@ -428,7 +428,7 @@ namespace Ikarus
 
                                    try
                                    {
-                                       package = "{'Config': {'Name': 'Ikarus', 'IP': '" + Ikarus_IPAddess.Text.Trim() + "', 'Port': '" + PortListener.Text.Trim() + "'}}";
+                                       package = "{'Registration': {'Name': 'Ikarus', 'IP': '" + Ikarus_IPAddess.Text.Trim() + "', 'Port': '" + PortListener.Text.Trim() + "'}}";
 
                                        package = package.Replace("'", '"'.ToString());
 
@@ -454,7 +454,7 @@ namespace Ikarus
                                        {
                                            connectCounter++;
 
-                                           if (connectCounter >= connectCounterMax / 4)
+                                           if (connectCounter >= connectCounterMax / 2)
                                            {
                                                UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), package);
 
@@ -602,7 +602,7 @@ namespace Ikarus
 
         private void GenerateJSONDataset()
         {
-            int maxRows = 60;
+            int maxRows = 62;
             string name = "";
 
             try
@@ -626,7 +626,7 @@ namespace Ikarus
                             DataRow[] gauges = dtInstruments.Select("IDInst ='" + dataRows[i]["IDInst"].ToString() + "'");
                             name = gauges[0]["Name"].ToString();
 
-                            if (name.Length > 16) { name.Substring(0, 16); }
+                            if (name.Length > 20) { name = name.Substring(0, 20); }
 
                             dataRow = dtJson.NewRow();
                             dataRow["Description"] = name;
@@ -664,7 +664,7 @@ namespace Ikarus
                         {
                             name = dtLamps.Rows[i]["Name"].ToString();
 
-                            if (name.Length > 16) { name.Substring(0, 16); }
+                            if (name.Length > 20) { name = name.Substring(0, 20); }
 
                             dataRow = dtJson.NewRow();
                             dataRow["Description"] = name;
@@ -701,7 +701,7 @@ namespace Ikarus
                             {
                                 name = dtSwitches.Rows[i]["Name"].ToString();
 
-                                if (name.Length > 16) { name.Substring(0, 16); }
+                                if (name.Length > 20) { name = name.Substring(0, 20); }
 
                                 dataRow = dtJson.NewRow();
                                 dataRow["Description"] = name;
@@ -874,10 +874,10 @@ namespace Ikarus
                             ImportExport.LogMessage("File not found: " + loadCockpit + ".ikarus ... ", true);
                         }
                     }
-                    //else
-                    //{
-                    //    GenerateJSONDataset();
-                    //}
+                    else
+                    {
+                        GenerateJSONDataset();
+                    }
                 }
             }
             catch (Exception ex) { ImportExport.LogMessage("Load Cockpit: " + ex.ToString()); }

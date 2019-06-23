@@ -244,7 +244,7 @@
                         <Button Name="ShowAll"
                                 Width="90"
                                 Height="24"
-                                Margin="108,0,0,0"
+                                Margin="108,0,0,-6"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Bottom"
                                 Click="Button_ShowAll_Click"
