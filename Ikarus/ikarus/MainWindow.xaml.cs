@@ -241,20 +241,20 @@ namespace Ikarus
                         if (dsMaster.Tables.Count > 0)
                         {
                             dtMasterLamps = dsMaster.Tables[0];
-                            if (dtMasterLamps.Rows.Count == 0) ImportExport.LogMessage("++++++ None definitions for lamps found.");
+                            //if (dtMasterLamps.Rows.Count == 0) ImportExport.LogMessage("++++++ None definitions for lamps found.");
                         }
                         else
                         {
-                            ImportExport.LogMessage("++++++ None definitions for lamps found.");
+                            //ImportExport.LogMessage("++++++ None definitions for lamps found.");
                         }
                         if (dsMaster.Tables.Count > 1)
                         {
                             dtMasterSwitches = dsMaster.Tables[1];
-                            if (dtMasterSwitches.Rows.Count == 0) ImportExport.LogMessage("++++++ None definitions for switches found.");
+                            //if (dtMasterSwitches.Rows.Count == 0) ImportExport.LogMessage("++++++ None definitions for switches found.");
                         }
                         else
                         {
-                            ImportExport.LogMessage("++++++ None definitions for switches found.");
+                            //ImportExport.LogMessage("++++++ None definitions for switches found.");
                         }
                     }
                 }
@@ -979,13 +979,13 @@ namespace Ikarus
                     lamps.Add(new Lamps(Convert.ToInt32(dtLamps.Rows[i]["ID"]), Convert.ToInt32(dtLamps.Rows[i]["Arg_number"]), Convert.ToInt32(dtLamps.Rows[i]["WindowID"])));
                 }
 
-                for (int i = 0; i < dtSwitches.Rows.Count; i++)
+                for (int i = 0; i < dtSwitches.Rows.Count; i++) // used switches
                 {
                     try
                     {
                         switches.Add(new Switches(Convert.ToInt32(dtSwitches.Rows[i]["ID"]), Convert.ToInt32(dtSwitches.Rows[i]["WindowID"]), Convert.ToInt32(dtSwitches.Rows[i]["ClickabledataID"]), dtSwitches.Rows[i]["Class"].ToString()));
 
-                        if (dtMasterSwitches != null)
+                        if (dtMasterSwitches != null && dtSwitches.Rows[i]["DeviceID"].ToString() == null)
                         {
                             if (switches[i].clickabledataID.ToString() != "0")
                             {
@@ -994,15 +994,32 @@ namespace Ikarus
                                 if (dataRowsMasterSwitches.Length > 0)
                                 {
                                     if (dataRowsMasterSwitches[0]["DcsID"].ToString() != "")
+                                    { 
                                         switches[i].dcsID = Convert.ToInt32(dataRowsMasterSwitches[0]["DcsID"]);
-
+                                    }
                                     if (dataRowsMasterSwitches[0]["DeviceID"].ToString() != "")
+                                    { 
                                         switches[i].deviceID = Convert.ToInt32(dataRowsMasterSwitches[0]["DeviceID"]);
-
+                                        dtSwitches.Rows[i]["DeviceID"] = switches[i].deviceID;
+                                    }
                                     if (dataRowsMasterSwitches[0]["ButtonID"].ToString() != "")
+                                    { 
                                         switches[i].buttonID = Convert.ToInt32(dataRowsMasterSwitches[0]["ButtonID"]);
+                                        dtSwitches.Rows[i]["ButtonID"] = switches[i].buttonID;
+                                    }
                                 }
                             }
+                        }
+                        else
+                        {
+                            if (dtSwitches.Rows[i]["DcsID"].ToString() != "")
+                                switches[i].dcsID = Convert.ToInt32(dtSwitches.Rows[i]["DcsID"].ToString());
+
+                            if (dtSwitches.Rows[i]["DeviceID"].ToString() != "")
+                                switches[i].deviceID = Convert.ToInt32(dtSwitches.Rows[i]["DeviceID"].ToString());
+
+                            if (dtSwitches.Rows[i]["ButtonID"].ToString() != "")
+                                switches[i].buttonID = Convert.ToInt32(dtSwitches.Rows[i]["ButtonID"].ToString());
                         }
                     }
                     catch (Exception e)

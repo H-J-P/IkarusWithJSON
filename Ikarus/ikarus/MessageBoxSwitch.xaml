@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Dialog Switches"
         Width="662.243"
-        Height="549"
+        Height="486.333"
         ResizeMode="NoResize"
         Topmost="True"
         WindowStartupLocation="CenterScreen"
@@ -16,7 +16,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <DataGrid Name="DataGridSwitches"
-                  Margin="10,72,10,123"
+                  Margin="10,76,10,160"
                   AlternatingRowBackground="#FF424242"
                   AutoGenerateColumns="False"
                   ColumnHeaderHeight="25"
@@ -270,5 +270,44 @@
                Content="Rotate"
                Foreground="#FFFFFEFE"
                RenderTransformOrigin="-0.81,0.625" />
+        <TextBox Name="DcsID"
+            Width="65"
+            Height="23"
+            Margin="78,0,0,123"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            TextWrapping="Wrap" />
+        <Label Width="41"
+            Margin="30,0,0,126"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Content="Dcs ID"
+            Foreground="#FFFDFDFD" />
+        <TextBox Name="DeviceID"
+            Width="65"
+            Height="23"
+            Margin="203,0,0,123"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            TextWrapping="Wrap" />
+        <Label Width="50"
+            Margin="148,0,0,126"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Content="DeviceID"
+            Foreground="#FFFDFDFD" />
+        <TextBox Name="ButtonID"
+            Width="65"
+            Height="23"
+            Margin="331,0,0,123"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            TextWrapping="Wrap" />
+        <Label Width="50"
+            Margin="276,0,0,126"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Content="ButtonID"
+            Foreground="#FFFDFDFD" />
     </Grid>
 </Window>

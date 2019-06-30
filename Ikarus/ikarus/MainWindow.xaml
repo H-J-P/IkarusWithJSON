@@ -307,6 +307,12 @@
                             <DataGridTextColumn Width="210"
                                                 Binding="{Binding Name}"
                                                 Header="Function" />
+                            <DataGridTextColumn Width="60"
+                                                Binding="{Binding DeviceID}"
+                                                Header="DeviceID" />
+                            <DataGridTextColumn Width="60"
+                                                Binding="{Binding ButtonID}"
+                                                Header="ButtonID" />
                             <DataGridTextColumn Width="45"
                                                 Binding="{Binding PosX}"
                                                 Header="Pos. X">
@@ -380,8 +386,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Name="DetailLamp"
-                                                Width="60"
-                                                Click="Button_DetailLamp_Click">
+                                                Width="10"
+                                                Click="Button_DetailLamp_Click" Visibility="Hidden">
                                             Detail
                                         </Button>
                                     </DataTemplate>
@@ -406,14 +412,18 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Width="110"
+                            <DataGridTextColumn Width="80"
                                                 Binding="{Binding Class}"
                                                 Header="Class name" 
-                                                Visibility="Hidden"/>
-                            <DataGridTextColumn Width="275"
+                                                Visibility="Visible"/>
+                            <DataGridTextColumn Width="230"
                                                 Binding="{Binding Name}"
                                                 Header="Function"
-                                                IsReadOnly="True" />
+                                                IsReadOnly="False" />
+                            <DataGridTextColumn Width="60"
+                                                Binding="{Binding Arg_number}"
+                                                Header="DCS ID"
+                                                IsReadOnly="False" />
                             <DataGridTextColumn Width="45"
                                                 Binding="{Binding PosX}"
                                                 Header="Pos. X">
@@ -456,11 +466,11 @@
                                                 Header="Background"
                                                 Visibility="Hidden" />
                             <DataGridTextColumn x:Name="ImageSwitchOn_Copy"
-                                                Width="220"
+                                                Width="200"
                                                 Binding="{Binding FilePictureOn}"
                                                 Header="Image ON" />
                             <DataGridTextColumn x:Name="ImageSwitchOff_Copy"
-                                                Width="220"
+                                                Width="200"
                                                 Binding="{Binding FilePictureOff}"
                                                 Header="Image OFF" />
                         </DataGrid.Columns>

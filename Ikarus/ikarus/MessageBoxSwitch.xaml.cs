@@ -25,6 +25,10 @@ namespace Ikarus
         private static string posY = "";
         private static string size = "";
         private static string windowID = "";
+        private static string dcsID = "";
+        private static string deviceID = "";
+        private static string buttonID = "";
+
         private static DataTable switches = new DataTable();
         private static DataRow[] dataRows = null;
         private static bool classNameChanged = false;
@@ -51,6 +55,9 @@ namespace Ikarus
                     size = dataRows[0]["Size"].ToString();
                     rotate = dataRows[0]["Rotate"].ToString();
                     windowID = dataRows[0]["WindowID"].ToString();
+                    dcsID = dataRows[0]["DcsID"].ToString();
+                    deviceID = dataRows[0]["DeviceID"].ToString();
+                    buttonID = dataRows[0]["ButtonID"].ToString();
                 }
             }
             catch (Exception ex) { ImportExport.LogMessage("Dialog Switch: " + ex.ToString()); }
@@ -85,6 +92,9 @@ namespace Ikarus
             PosY.Text = posY;
             Size.Text = size;
             Rotate.Text = rotate;
+            DcsID.Text = dcsID;
+            DeviceID.Text = deviceID;
+            ButtonID.Text = buttonID;
 
             if (MainWindow.dtMasterSwitches != null)
             {
@@ -218,6 +228,8 @@ namespace Ikarus
                     dataRows[0]["Size"] = Size.Text;
                     dataRows[0]["Rotate"] = Rotate.Text;
                     dataRows[0]["WindowID"] = WindowID.SelectedIndex + 1;
+                    dataRows[0]["DeviceID"] = DeviceID.Text;
+                    dataRows[0]["ButtonID"] = ButtonID.Text;
                 }
             }
             catch (Exception ex) { ImportExport.LogMessage("Transmit Switch: " + ex.ToString()); }
