@@ -15,42 +15,6 @@
                 <GradientStop Offset="1" Color="#FF343434" />
             </LinearGradientBrush>
         </Grid.Background>
-        <DataGrid Name="DataGridSwitches"
-                  Margin="10,76,10,160"
-                  AlternatingRowBackground="#FF424242"
-                  AutoGenerateColumns="False"
-                  ColumnHeaderHeight="25"
-                  ItemsSource="{Binding}"
-                  MouseWheel="DataGridSwitches_MouseWheel"
-                  SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="65"
-                                    Binding="{Binding DcsID}"
-                                    Header="DCS ID"
-                                    IsReadOnly="True">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="TextAlignment" Value="Right" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Width="35"
-                                    Binding="{Binding ID}"
-                                    Header="ID"
-                                    IsReadOnly="True"
-                                    Visibility="Hidden">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="TextAlignment" Value="Right" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Width="550"
-                                    Binding="{Binding Discription}"
-                                    Header="Function"
-                                    IsReadOnly="True" />
-            </DataGrid.Columns>
-        </DataGrid>
         <Label Width="66"
                Margin="12,0,0,95"
                HorizontalAlignment="Left"
@@ -114,7 +78,7 @@
                Content="Panel"
                Foreground="#FFFFFEFE" />
         <ComboBox Name="WindowID"
-                  Width="288"
+                  Width="318"
                   Height="26"
                   Margin="78,10,0,0"
                   HorizontalAlignment="Left"
@@ -177,7 +141,7 @@
                Content="Class"
                Foreground="#FFFFFEFE" />
         <ComboBox Name="Classname"
-                  Width="288"
+                  Width="318"
                   Margin="78,41,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
@@ -308,6 +272,19 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Content="ButtonID"
+            Foreground="#FFFDFDFD" />
+        <TextBox Name="NameFct"
+            Width="318"
+            Height="23"
+            Margin="78,0,0,151"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            TextWrapping="Wrap" />
+        <Label Width="54"
+            Margin="19,0,0,153"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Content="Function"
             Foreground="#FFFDFDFD" />
     </Grid>
 </Window>

@@ -28,6 +28,7 @@ namespace Ikarus
         private static string dcsID = "";
         private static string deviceID = "";
         private static string buttonID = "";
+        private static string function = "";
 
         private static DataTable switches = new DataTable();
         private static DataRow[] dataRows = null;
@@ -74,9 +75,9 @@ namespace Ikarus
         {
             InitializeComponent();
 
-            DataGridSwitches.CanUserAddRows = false;
-            DataGridSwitches.CanUserDeleteRows = true;
-            DataGridSwitches.IsReadOnly = false;
+            //DataGridSwitches.CanUserAddRows = false;
+            //DataGridSwitches.CanUserDeleteRows = true;
+            //DataGridSwitches.IsReadOnly = false;
 
             WindowID.ItemsSource = null;
             WindowID.ItemsSource = MainWindow.dtWindows.DefaultView;
@@ -95,35 +96,37 @@ namespace Ikarus
             DcsID.Text = dcsID;
             DeviceID.Text = deviceID;
             ButtonID.Text = buttonID;
+            NameFct.Text = name;
 
-            if (MainWindow.dtMasterSwitches != null)
-            {
-                ChangeSourceDatagridSwitches();
+            //NameFct
+            //if (MainWindow.dtMasterSwitches != null)
+            //{
+            //    ChangeSourceDatagridSwitches();
 
-                DataGridSwitches.ScrollIntoView(DataGridSwitches.Items[DataGridSwitches.Items.Count - 1]);
+            //    DataGridSwitches.ScrollIntoView(DataGridSwitches.Items[DataGridSwitches.Items.Count - 1]);
 
-                try
-                {
-                    if (clickable != 0)
-                    {
-                        for (int n = 0; n < dataRows.Length; n++)
-                        {
-                            if (Convert.ToInt32(dataRows[n][0]) == clickable)
-                            {
-                                DataGridSwitches.SelectedIndex = n;
-                                DataGridSwitches.ScrollIntoView(DataGridSwitches.Items[n]);
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //DataGridSwitches.SelectedIndex = 0;
-                        DataGridSwitches.ScrollIntoView(DataGridSwitches.Items[0]);
-                    }
-                }
-                catch { }
-            }
+            //    try
+            //    {
+            //        if (clickable != 0)
+            //        {
+            //            for (int n = 0; n < dataRows.Length; n++)
+            //            {
+            //                if (Convert.ToInt32(dataRows[n][0]) == clickable)
+            //                {
+            //                    DataGridSwitches.SelectedIndex = n;
+            //                    DataGridSwitches.ScrollIntoView(DataGridSwitches.Items[n]);
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            //DataGridSwitches.SelectedIndex = 0;
+            //            DataGridSwitches.ScrollIntoView(DataGridSwitches.Items[0]);
+            //        }
+            //    }
+            //    catch { }
+            //}
             Show();
         }
 
@@ -138,11 +141,11 @@ namespace Ikarus
             if (MainWindow.dtMasterSwitches != null)
             {
                 //setSwitch = true;
-                dataRows = MainWindow.dtMasterSwitches.Select("Type='Switch' OR Type='Rotary'", "DcsID");
+                //dataRows = MainWindow.dtMasterSwitches.Select("Type='Switch' OR Type='Rotary'", "DcsID");
 
-                switches = dataRows.CopyToDataTable<DataRow>();
-                DataGridSwitches.ItemsSource = null;
-                DataGridSwitches.ItemsSource = switches.DefaultView;
+                //switches = dataRows.CopyToDataTable<DataRow>();
+                //DataGridSwitches.ItemsSource = null;
+                //DataGridSwitches.ItemsSource = switches.DefaultView;
 
                 if (classNameChanged)
                 {
@@ -195,7 +198,7 @@ namespace Ikarus
         {
             try
             {
-                DataRowView rowView = (DataRowView)DataGridSwitches.SelectedItem;
+                //DataRowView rowView = (DataRowView)DataGridSwitches.SelectedItem;
 
                 DataRow[] dataRows = MainWindow.dtSwitches.Select("ID=" + index);
 
@@ -203,21 +206,24 @@ namespace Ikarus
                 {
                     dataRows[0]["Class"] = Classname.Text;
 
-                    if (DataGridSwitches.SelectedItem != null)
-                    {
-                        dataRows[0]["ClickabledataID"] = Convert.ToInt32(rowView.Row.ItemArray[0]);
-                        dataRows[0]["Name"] = rowView.Row.ItemArray[3].ToString();
+                    //if (DataGridSwitches.SelectedItem != null)
+                    //{
+                    //    dataRows[0]["ClickabledataID"] = Convert.ToInt32(rowView.Row.ItemArray[0]);
 
-                        if (rowView.Row.ItemArray[5].ToString() == "Switch" || rowView.Row.ItemArray[5].ToString() == "Rotary")
-                            dataRows[0]["DcsID"] = rowView.Row.ItemArray[4].ToString();
-                        else
-                            dataRows[0]["DcsID"] = rowView.Row.ItemArray[5].ToString();
-                    }
-                    else
-                    {
-                        dataRows[0]["ClickabledataID"] = 0;
-                        dataRows[0]["Name"] = "-";
-                    }
+                    //    if (rowView.Row.ItemArray[5].ToString() == "Switch" || rowView.Row.ItemArray[5].ToString() == "Rotary")
+                    //        dataRows[0]["DcsID"] = rowView.Row.ItemArray[4].ToString();
+                    //    else
+                    //        dataRows[0]["DcsID"] = rowView.Row.ItemArray[5].ToString();
+                    //}
+                    //else
+                    //{
+                    //    dataRows[0]["ClickabledataID"] = 0;
+                    //    dataRows[0]["Name"] = "-";
+                    //}
+
+
+                    dataRows[0]["DcsID"] = DcsID.Text;
+                    dataRows[0]["Name"] = NameFct.Text;
                     dataRows[0]["FilePictureOn"] = ImageOn.Text;
                     dataRows[0]["FilePictureOff"] = ImageOff.Text;
                     dataRows[0]["FilePicture2On"] = Image2on.Text;
