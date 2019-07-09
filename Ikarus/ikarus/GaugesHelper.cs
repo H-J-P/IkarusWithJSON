@@ -58,7 +58,8 @@ namespace Ikarus
 
         public string CleanUpDisplayString(string cleanit)
         {
-            cleanit = cleanit.Replace('"'.ToString(), "");
+            cleanit = cleanit.Substring(1, cleanit.Length - 1);
+            //cleanit = cleanit.Replace('"'.ToString(), "");
             cleanit = cleanit.Replace("'\'".ToString(), "");
 
             return cleanit;
