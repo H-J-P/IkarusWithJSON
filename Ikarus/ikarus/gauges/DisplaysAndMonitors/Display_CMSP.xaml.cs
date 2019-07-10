@@ -114,7 +114,7 @@ namespace Ikarus
 
                                for (int n = 0; n < vals.Length; n++)
                                {
-                                   data[n] = vals[n];
+                                   data[n] = helper.CleanUpDisplayString(vals[n]);
                                }
                                Display1.Text = data[0];
                                Display2.Text = data[1];

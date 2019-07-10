@@ -25,7 +25,7 @@ namespace Ikarus
         private static Socket sendingSocket = null;
         //public static string receivedData = "";
         private static string gotData = "";
-        private static string newline = Environment.NewLine;
+        //private static string newline = Environment.NewLine;
         public static List<string> receivedDataStack = new List<string> { };
         private static int count = 0;
         private static byte[] content = null;
@@ -55,8 +55,17 @@ namespace Ikarus
                 content = Encoding.UTF8.GetBytes(textToSend);
                 count = udpClient.Send(content, content.Length, ipEndPoint);
 
-                if (MainWindow.detailLog || MainWindow.switchLog) { ImportExport.LogMessage("ID: " + dcsID + " send to IP: " + ipAdress + ":" + port + " Package: " + textToSend + " Bytes: " + count.ToString(), true); }
-
+                if (MainWindow.detailLog || MainWindow.switchLog)
+                {
+                    if (dcsID != "")
+                    {
+                        ImportExport.LogMessage("ID: " + dcsID + " send to IP: " + ipAdress + ":" + port + " Package: " + textToSend + " Bytes: " + count.ToString(), true);
+                    }
+                    else
+                    {
+                        ImportExport.LogMessage("Send to IP: " + ipAdress + ":" + port + " Package: " + textToSend + " Bytes: " + count.ToString(), true);
+                    }
+                }
                 udpClient.Close();
             }
             catch (Exception e)
@@ -100,6 +109,8 @@ namespace Ikarus
             try
             {
                 listener = new UdpClient(listenPort);
+                //listener.DontFragment = true;
+
                 listenerEndPoint = new IPEndPoint(IPAddress.Any, listenPort);
                 byte[] receiveByteArray;
 

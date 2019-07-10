@@ -108,7 +108,7 @@ namespace Ikarus
                            {
                                vals = strData.Split(';');
 
-                               if (vals.Length > 0) { frequenz = vals[0]; }
+                               if (vals.Length > 0) { frequenz = helper.CleanUpDisplayString(vals[0]); }
 
                                if (frequenz.Length > 7)
                                {

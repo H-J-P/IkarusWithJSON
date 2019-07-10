@@ -56,6 +56,21 @@ namespace Ikarus
         // https://www.youtube.com/watch?v=8DwJ_3EPJAI
         // https://www.youtube.com/watch?v=8YLzpo09Wfw
 
+        public string CleanUpDisplayString(string cleanit)
+        {
+            try
+            {
+                if (cleanit.Substring(cleanit.Length - 1) == '"'.ToString())
+                {
+                    cleanit = cleanit.Substring(1, cleanit.Length - 2);
+                }
+                cleanit = cleanit.Replace("'\'".ToString(), "");
+            }
+            catch { }
+
+            return cleanit;
+        }
+
         public void MakeDraggable(System.Windows.UIElement moveThisElement, System.Windows.UIElement movedByElement)
         {
             TranslateTransform trUsercontrol = new TranslateTransform(0, 0);

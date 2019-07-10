@@ -78,7 +78,7 @@ namespace Ikarus
                                if (vals.Length > 0) { frequenz = vals[0]; }
                                if (frequenz.Length > 7) { frequenz = frequenz.Substring(0, 7); }
 
-                               Frequenz.Text = frequenz;
+                               Frequenz.Text = helper.CleanUpDisplayString(frequenz);
                            }
                            //catch { return; }
                            catch (Exception e) { ImportExport.LogMessage(GetType().Name + " got data and failed with exception: " + e.ToString()); }

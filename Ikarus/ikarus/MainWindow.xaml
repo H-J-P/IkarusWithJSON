@@ -244,7 +244,7 @@
                         <Button Name="ShowAll"
                                 Width="90"
                                 Height="24"
-                                Margin="108,0,0,0"
+                                Margin="108,0,0,-6"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Bottom"
                                 Click="Button_ShowAll_Click"
@@ -307,6 +307,12 @@
                             <DataGridTextColumn Width="210"
                                                 Binding="{Binding Name}"
                                                 Header="Function" />
+                            <DataGridTextColumn Width="60"
+                                                Binding="{Binding DeviceID}"
+                                                Header="DeviceID" />
+                            <DataGridTextColumn Width="60"
+                                                Binding="{Binding ButtonID}"
+                                                Header="ButtonID" />
                             <DataGridTextColumn Width="45"
                                                 Binding="{Binding PosX}"
                                                 Header="Pos. X">
@@ -380,8 +386,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Name="DetailLamp"
-                                                Width="60"
-                                                Click="Button_DetailLamp_Click">
+                                                Width="10"
+                                                Click="Button_DetailLamp_Click" Visibility="Hidden">
                                             Detail
                                         </Button>
                                     </DataTemplate>
@@ -406,14 +412,18 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Width="110"
+                            <DataGridTextColumn Width="80"
                                                 Binding="{Binding Class}"
                                                 Header="Class name" 
-                                                Visibility="Hidden"/>
-                            <DataGridTextColumn Width="275"
+                                                Visibility="Visible"/>
+                            <DataGridTextColumn Width="230"
                                                 Binding="{Binding Name}"
                                                 Header="Function"
-                                                IsReadOnly="True" />
+                                                IsReadOnly="False" />
+                            <DataGridTextColumn Width="60"
+                                                Binding="{Binding Arg_number}"
+                                                Header="DCS ID"
+                                                IsReadOnly="False" />
                             <DataGridTextColumn Width="45"
                                                 Binding="{Binding PosX}"
                                                 Header="Pos. X">
@@ -456,11 +466,11 @@
                                                 Header="Background"
                                                 Visibility="Hidden" />
                             <DataGridTextColumn x:Name="ImageSwitchOn_Copy"
-                                                Width="220"
+                                                Width="200"
                                                 Binding="{Binding FilePictureOn}"
                                                 Header="Image ON" />
                             <DataGridTextColumn x:Name="ImageSwitchOff_Copy"
-                                                Width="220"
+                                                Width="200"
                                                 Binding="{Binding FilePictureOff}"
                                                 Header="Image OFF" />
                         </DataGrid.Columns>
@@ -572,47 +582,46 @@
                             <ColumnDefinition Width="235*" />
                         </Grid.ColumnDefinitions>
                         <Rectangle Grid.ColumnSpan="2"
-                                   Height="42"
-                                   Margin="10,59,207,0"
+                                   Height="51"
+                                   Margin="10,28,207,0"
                                    VerticalAlignment="Top"
                                    Stroke="#FFAFAC68" />
                         <Label
                                Height="24"
-                               Margin="7,106,0,0"
+                               Margin="12,84,0,0"
                                VerticalAlignment="Top"
                                Content="Cockpit Panels"
                                FontSize="18"
                                Foreground="#FFF9F9F9" HorizontalAlignment="Left" Width="131" />
                         <Label Width="110"
                                Height="24"
-                               Margin="10,30,0,0"
+                               Margin="10,0,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
                                Content="Network"
                                FontSize="18"
                                Foreground="#FFF9F9F9" />
-                        <Label Width="12"
+                        <Label Width="63"
                                Height="16"
-                               Margin="26,73,0,0"
+                               Margin="227,45,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
-                               Content="IP"
+                               Content="DCS PC:  IP"
                                Foreground="#FFF9F9F9"
-                               RenderTransformOrigin="0.286,0.423" />
+                               RenderTransformOrigin="0.286,0.423" Grid.Column="1" />
                         <TextBox Name="IPAddess"
-                                 Grid.ColumnSpan="2"
                                  Width="110"
                                  Height="23"
-                                 Margin="43,69,0,0"
+                                 Margin="295,42,0,0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Top"
                                  Text="0"
                                  TextAlignment="Center"
                                  TextWrapping="Wrap"
-                                 ToolTip="The IP where DCS runs" />
+                                 ToolTip="The IP where DCS runs" Grid.Column="1" />
                         <DataGrid Name="DataGridWindows"
                                   Grid.ColumnSpan="2"
-                                  Margin="10,135,207,10"
+                                  Margin="10,117,207,10"
                                   AlternatingRowBackground="#FF424242"
                                   AutoGenerateColumns="False"
                                   ColumnHeaderHeight="25"
@@ -751,18 +760,18 @@
                             </Button.ContentTemplate>
                         </Button>
                         <Label Grid.Column="1"
-                               Width="75"
+                               Width="12"
                                Height="16"
-                               Margin="27,72,0,0"
+                               Margin="61,44,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
-                               Content="Port Listener"
+                               Content=" : "
                                Foreground="#FFF9F9F9" />
                         <TextBox x:Name="PortListener"
                                  Grid.Column="1"
                                  Width="60"
                                  Height="23"
-                                 Margin="107,69,0,0"
+                                 Margin="74,42,0,0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Top"
                                  RenderTransformOrigin="0.463,2.217"
@@ -770,18 +779,18 @@
                                  TextAlignment="Center"
                                  TextWrapping="Wrap" />
                         <Label Grid.Column="1"
-                               Width="75"
+                               Width="11"
                                Height="16"
-                               Margin="194,72,0,0"
+                               Margin="409,43,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
-                               Content="Port Sender"
+                               Content=" : "
                                Foreground="#FFF9F9F9" />
                         <TextBox x:Name="PortSender"
                                  Grid.Column="1"
                                  Width="60"
                                  Height="23"
-                                 Margin="274,69,0,0"
+                                 Margin="422,42,0,0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Top"
                                  RenderTransformOrigin="0.463,2.217"
@@ -876,7 +885,26 @@
                                   Foreground="#FFF9F9F9" />
                         <Label x:Name="labelLight" Content="Light Color ADI" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,79,235" Foreground="#FFECE8E8" HorizontalAlignment="Right" Width="81" Height="16"/>
                         <TextBox x:Name="textBoxLightColor" Text="#95E295" TextWrapping="Wrap" Margin="0,0,79,207" Grid.Column="1" HorizontalAlignment="Right" Width="81" Height="23" VerticalAlignment="Bottom"/>
-                        <Button x:Name="Reconnect" Content="Reconnect to DCS" Grid.Column="1" HorizontalAlignment="Left" Margin="608,70,0,0" VerticalAlignment="Top" Width="119" Click="ReconnectToDCS"/>
+                        <Button x:Name="Reconnect" Content="Reconnect to DCS" Grid.Column="1" HorizontalAlignment="Left" Margin="608,44,0,0" VerticalAlignment="Top" Width="119" Click="ReconnectToDCS"/>
+                        <TextBox x:Name="Ikarus_IPAddess"
+                            Grid.ColumnSpan="2"
+                            Width="110"
+                            Height="23"
+                            Margin="95,42,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Text="0"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap"
+                            ToolTip="The IP where DCS runs" />
+                        <Label Width="71"
+                            Height="16"
+                            Margin="19,44,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="Ikarus PC:  IP"
+                            Foreground="#FFF9F9F9"
+                            RenderTransformOrigin="0.286,0.423" />
                     </Grid>
                 </TabItem>
                 <TabItem Name="Log"
@@ -891,13 +919,10 @@
                                  BorderBrush="#FFAFAC68"
                                  Foreground="Black" />
                         <Button Name="Copy"
-                                Width="110"
                                 Height="24"
-                                Margin="10,0,0,0"
-                                HorizontalAlignment="Left"
                                 VerticalAlignment="Bottom"
                                 Click="Button_Copy_Click"
-                                Content="Copy to clipboard" />
+                                Content="Copy" HorizontalAlignment="Right" Width="90" Margin="0,0,-8,0" />
                         <Button Name="LogRefresh"
                                 Width="110"
                                 Height="24"
@@ -967,11 +992,11 @@
                     ToolTip="Ikarus Screen Capture" HorizontalAlignment="Right" Width="90" />
             <Label Name="Version"
                    Height="19"
-                   Margin="508,0,418,10"
+                   Margin="508,0,0,10"
                    VerticalAlignment="Bottom"
                    Content="Copyright / Version"
                    HorizontalContentAlignment="Center"
-                   Foreground="#FFD8BC05" RenderTransformOrigin="1.004,0.526" HorizontalAlignment="Center" Width="196" />
+                   Foreground="#FFD8BC05" RenderTransformOrigin="1.004,0.526" HorizontalAlignment="Left" Width="196" />
             <Label Name="lbEditMode"
                    Height="19"
                    Margin="315,0,0,10"

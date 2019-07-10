@@ -319,7 +319,7 @@ namespace Ikarus
                                        Lines[i] = ReplaceStrings(vals[i]);
                                        if (Lines[i].Length > numberOfSegments) { Lines[i] = Lines[i].Substring(0, numberOfSegments); }
                                    }
-                                   textBlockLines[i].Text = Lines[i];
+                                   textBlockLines[i].Text = helper.CleanUpDisplayString(Lines[i]);
                                }
                            }
                            catch (Exception e) { ImportExport.LogMessage(GetType().Name + " got data and failed with exception: " + e.ToString()); }
