@@ -633,6 +633,7 @@ namespace Ikarus
                             dataRow = dtJson.NewRow();
                             dataRow["Description"] = name;
                             dataRow["Type"] = dataRows[i]["Type"].ToString();
+<<<<<<< HEAD
 
                             if (dataRows[i]["ID"].ToString() == "") { dataRows[i]["ID"] = "-"; }
 
@@ -660,6 +661,35 @@ namespace Ikarus
                         }
                     }
 
+=======
+
+                            if (dataRows[i]["ID"].ToString() == "") { dataRows[i]["ID"] = "-"; }
+
+                            dataRow["ID"] = dataRows[i]["ID"].ToString() == "-" ? dataRows[i]["Arg_number"].ToString() : dataRows[i]["ID"].ToString();
+                            dataRow["Format"] = dataRows[i]["Format"].ToString() == "-" ? "float4" : dataRows[i]["Format"].ToString();
+                            dataRow["ExportID"] = dataRows[i]["Arg_number"].ToString();
+                            dataRow["negateValue"] = dataRows[i]["negateValue"].ToString();
+
+                            dtJson.Rows.Add(dataRow);
+
+                            if (dtJson.Rows.Count > maxRows)
+                            {
+                                dtJson.AcceptChanges();
+
+                                GenerateAndSentJson(dtJson);
+
+                                dtJson.Clear();
+
+                                Thread.Sleep(10);
+                            }
+                        }
+                        catch (Exception f)
+                        {
+                            ImportExport.LogMessage("GenerateJSONDataset for gauges: " + f.ToString());
+                        }
+                    }
+
+>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
                     for (int i = 0; i < dtLamps.Rows.Count; i++)
                     {
                         try
@@ -764,6 +794,7 @@ namespace Ikarus
                 {
                     dsJSON = new DataSet();
                     dsJSON.Tables.Add(dtJson);
+<<<<<<< HEAD
 
                     json = JsonConvert.SerializeObject(dsJSON, Formatting.None);
 
@@ -776,6 +807,20 @@ namespace Ikarus
 
                     UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
 
+=======
+
+                    json = JsonConvert.SerializeObject(dsJSON, Formatting.None);
+
+                    dsJSON.Tables.Remove(dtJson);
+
+                    string configIDString = "{'ConfigID': " + configID + ", ";
+                    configIDString = configIDString.Replace("'", '"'.ToString());
+
+                    json = configIDString + json.Substring(1, json.Length - 1);
+
+                    UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
+
+>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
                     if (!detailLog && !switchLog) { ImportExport.LogMessage("Send json data for cockpit: " + loadCockpit + " -> " + json.Length + " bytes."); }
                 }
             }
@@ -987,9 +1032,13 @@ namespace Ikarus
                     {
                         switches.Add(new Switches(Convert.ToInt32(dtSwitches.Rows[i]["ID"]), Convert.ToInt32(dtSwitches.Rows[i]["WindowID"]), Convert.ToInt32(dtSwitches.Rows[i]["ClickabledataID"]), dtSwitches.Rows[i]["Class"].ToString()));
 
+<<<<<<< HEAD
                         deviceIdent = dtSwitches.Rows[i]["DeviceID"].ToString();
 
                         if (dtMasterSwitches != null && deviceIdent == "")
+=======
+                        if (dtMasterSwitches != null && dtSwitches.Rows[i]["DeviceID"].ToString() == null)
+>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
                         {
                             if (switches[i].clickabledataID.ToString() != "0")
                             {
@@ -1012,6 +1061,7 @@ namespace Ikarus
                                         dtSwitches.Rows[i]["ButtonID"] = switches[i].buttonID;
                                     }
                                 }
+<<<<<<< HEAD
                             }
                         }
                         else
@@ -1027,7 +1077,20 @@ namespace Ikarus
                             if (dtSwitches.Rows[i]["ButtonID"].ToString() != "")
                             {
                                 switches[i].buttonID = Convert.ToInt32(dtSwitches.Rows[i]["ButtonID"].ToString());
+=======
+>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
                             }
+                        }
+                        else
+                        {
+                            if (dtSwitches.Rows[i]["DcsID"].ToString() != "")
+                                switches[i].dcsID = Convert.ToInt32(dtSwitches.Rows[i]["DcsID"].ToString());
+
+                            if (dtSwitches.Rows[i]["DeviceID"].ToString() != "")
+                                switches[i].deviceID = Convert.ToInt32(dtSwitches.Rows[i]["DeviceID"].ToString());
+
+                            if (dtSwitches.Rows[i]["ButtonID"].ToString() != "")
+                                switches[i].buttonID = Convert.ToInt32(dtSwitches.Rows[i]["ButtonID"].ToString());
                         }
                     }
                     catch (Exception e)
