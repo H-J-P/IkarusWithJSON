@@ -58,7 +58,6 @@ namespace Ikarus
 
         public string CleanUpDisplayString(string cleanit)
         {
-<<<<<<< HEAD
             try
             {
                 if (cleanit.Substring(cleanit.Length - 1) == '"'.ToString())
@@ -68,12 +67,9 @@ namespace Ikarus
                 cleanit = cleanit.Replace("'\'".ToString(), "");
             }
             catch { }
-=======
-            cleanit = cleanit.Substring(1, cleanit.Length - 1);
-            //cleanit = cleanit.Replace('"'.ToString(), "");
-            cleanit = cleanit.Replace("'\'".ToString(), "");
->>>>>>> 06a792e7a2d72232915220553d327b90857213fb
-
+            //cleanit = cleanit.Substring(1, cleanit.Length - 1);
+            ////cleanit = cleanit.Replace('"'.ToString(), "");
+            //cleanit = cleanit.Replace("'\'".ToString(), "");
             return cleanit;
         }
 
