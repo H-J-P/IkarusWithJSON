@@ -1298,9 +1298,9 @@ namespace Ikarus {
                 this.columnOldAsciiValue.DefaultValue = ((string)(" "));
                 this.columnIn.DefaultValue = ((string)("-"));
                 this.columnOut.DefaultValue = ((string)("-"));
-                this.columnType.DefaultValue = ((string)("\"-\""));
-                this.columnID.DefaultValue = ((string)("\"-\""));
-                this.columnFormat.DefaultValue = ((string)("\"-\""));
+                this.columnType.DefaultValue = ((string)("ID"));
+                this.columnID.DefaultValue = ((string)("-"));
+                this.columnFormat.DefaultValue = ((string)("-"));
                 this.columnnegateValue.DefaultValue = ((string)("0"));
             }
             

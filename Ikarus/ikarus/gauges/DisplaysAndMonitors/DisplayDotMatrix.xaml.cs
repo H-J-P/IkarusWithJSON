@@ -206,12 +206,7 @@ namespace Ikarus
 
                                if (vals.Length > 0) { textForDisplay = vals[0]; }
 
-                               if (textForDisplay.Length > 1) // " "
-                                   textForDisplay = helper.CleanUpDisplayString(textForDisplay);
-                               else
-                                   textForDisplay = "";
-
-                               if (!isAscii && textForDisplay.Length > 0)
+                               if (!isAscii)
                                {
                                    value = Convert.ToDouble(vals[0], CultureInfo.InvariantCulture);
 
@@ -221,14 +216,10 @@ namespace Ikarus
                                        textForDisplay = value.ToString().Substring(0, numberOfSegments);
                                    }
                                }
-                               if (textForDisplay.Length > numberOfSegments)
-                                   textForDisplay = textForDisplay.Substring(0, numberOfSegments);
+                               Segments.Text = helper.CleanUpDisplayString(textForDisplay);
                            }
                            catch
                            {
-                               if (textForDisplay.Length > numberOfSegments)
-                                   textForDisplay = textForDisplay.Substring(0, numberOfSegments);
-
                                return;
                            }
                        }));

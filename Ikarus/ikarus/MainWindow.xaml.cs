@@ -790,7 +790,7 @@ namespace Ikarus
 //                    UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
 
 //>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
-//                    if (!detailLog && !switchLog) { ImportExport.LogMessage("Send json data for cockpit: " + loadCockpit + " -> " + json.Length + " bytes."); }
+                    if (!detailLog && !switchLog) { ImportExport.LogMessage("Send json data for cockpit: " + loadCockpit + " -> " + json.Length + " bytes."); }
                 }
             }
             catch (Exception ex)
@@ -1182,8 +1182,8 @@ namespace Ikarus
                     {
                         for (int n = 1; n < receivedItems.Length - i; n++)
                         {
-                            if (receivedItems[i + n].IndexOf(start) > 0 || receivedItems[i + n].IndexOf("=0.") > 0 || receivedItems[i + n].IndexOf("=1.") > 0 ||
-                                     receivedItems[i + n].IndexOf("=-0.") > 0 || receivedItems[i + n].IndexOf("=-1.") > 0)
+                            if (receivedItems[i + n].IndexOf(start) > 0 || receivedItems[i + n].IndexOf("=0") > 0 || receivedItems[i + n].IndexOf("=1") > 0 ||
+                                     receivedItems[i + n].IndexOf("=-0") > 0 || receivedItems[i + n].IndexOf("=-1") > 0 || receivedItems[i + n].IndexOf("=-1") > 0)
                             {
                                 break;
                             }

@@ -60,16 +60,17 @@ namespace Ikarus
         {
             try
             {
-                if (cleanit.Substring(cleanit.Length - 1) == '"'.ToString())
+                if (cleanit.Substring(0, 1) == '"'.ToString())
                 {
-                    cleanit = cleanit.Substring(1, cleanit.Length - 2);
+                    cleanit = cleanit.Substring(1, cleanit.Length - 1);
                 }
-                cleanit = cleanit.Replace("'\'".ToString(), "");
+                if (cleanit.Substring(cleanit.Length - 1, 1) == '"'.ToString())
+                {
+                    cleanit = cleanit.Substring(0, cleanit.Length - 1);
+                }
+                //cleanit = cleanit.Replace("'\'".ToString(), "");
             }
             catch { }
-            //cleanit = cleanit.Substring(1, cleanit.Length - 1);
-            ////cleanit = cleanit.Replace('"'.ToString(), "");
-            //cleanit = cleanit.Replace("'\'".ToString(), "");
             return cleanit;
         }
 

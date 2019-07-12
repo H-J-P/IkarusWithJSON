@@ -76,7 +76,6 @@ namespace Ikarus
                                vals = strData.Split(';');
 
                                if (vals.Length > 0) { frequenz = vals[0]; }
-                               if (frequenz.Length > 7) { frequenz = frequenz.Substring(0, 7); }
 
                                Frequenz.Text = helper.CleanUpDisplayString(frequenz);
                            }

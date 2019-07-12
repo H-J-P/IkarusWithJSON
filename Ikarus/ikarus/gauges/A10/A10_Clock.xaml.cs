@@ -114,8 +114,8 @@ namespace Ikarus
 
                                lseconds = Convert.ToDouble(seconds, CultureInfo.InvariantCulture);
                            }
-                           //catch { return; }
-                           catch (Exception e) { ImportExport.LogMessage(GetType().Name + " got data and failed with exception: " + e.ToString()); }
+                           catch { return; }
+                           //catch (Exception e) { ImportExport.LogMessage(GetType().Name + " got data and failed with exception: " + e.ToString()); }
                        }));
         }
 

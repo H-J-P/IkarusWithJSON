@@ -210,18 +210,10 @@ namespace Ikarus
                                        textForDisplay = value.ToString().Substring(0, numberOfSegments);
                                    }
                                }
-
-                               if (textForDisplay.Length > numberOfSegments)
-                                   textForDisplay = textForDisplay.Substring(0, numberOfSegments);
-
                                Segments.Text = helper.CleanUpDisplayString(textForDisplay);
                            }
                            catch
                            {
-                               if (textForDisplay.Length > numberOfSegments)
-                                   textForDisplay = textForDisplay.Substring(0, numberOfSegments);
-
-                               Segments.Text = helper.CleanUpDisplayString(textForDisplay);
                                return;
                            }
                        }));
