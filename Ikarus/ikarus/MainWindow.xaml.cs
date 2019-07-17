@@ -15,6 +15,9 @@ using System.Drawing.Imaging;
 using System.Reflection;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using WindowsInput.Native;
+using WindowsInput;
+
 
 namespace Ikarus
 {
@@ -149,6 +152,7 @@ namespace Ikarus
         public static string json = "";
         public static bool jsonChecked = false;
         public static string deviceIdent = "";
+        private static string start = "=" + '"';
 
         #endregion
 
@@ -1172,8 +1176,6 @@ namespace Ikarus
 
         public void CheckReceivedItem()
         {
-            string start = "=" + '"';
-
             for (int i = 0; i < receivedItems.Length; i++)
             {
                 try
@@ -1183,7 +1185,10 @@ namespace Ikarus
                         for (int n = 1; n < receivedItems.Length - i; n++)
                         {
                             if (receivedItems[i + n].IndexOf(start) > 0 || receivedItems[i + n].IndexOf("=0") > 0 || receivedItems[i + n].IndexOf("=1") > 0 ||
-                                     receivedItems[i + n].IndexOf("=-0") > 0 || receivedItems[i + n].IndexOf("=-1") > 0 || receivedItems[i + n].IndexOf("=-1") > 0)
+                                     receivedItems[i + n].IndexOf("=-0") > 0 || receivedItems[i + n].IndexOf("=-1") > 0 || receivedItems[i + n].IndexOf("=-2") > 0 ||
+                                     receivedItems[i + n].IndexOf("=2") > 0 || receivedItems[i + n].IndexOf("=3") > 0 || receivedItems[i + n].IndexOf("=4") > 0 ||
+                                     receivedItems[i + n].IndexOf("=5") > 0 || receivedItems[i + n].IndexOf("=6") > 0 || receivedItems[i + n].IndexOf("=7") > 0 ||
+                                     receivedItems[i + n].IndexOf("=8") > 0 || receivedItems[i + n].IndexOf("=9") > 0)
                             {
                                 break;
                             }
@@ -2639,6 +2644,16 @@ namespace Ikarus
         }
 
         #endregion
+
+        private void Send_ESC_Click(object sender, RoutedEventArgs e)
+        {
+            //SendKeyToHandle.SendSimulateKeyPress("ApplicationFrameWindow", "Rechner", "{ESC}");
+            ProzessHelper.SetFocusToExternalApp(processNameDCS);
+
+            SendKeys.Send(Key.Home);
+
+            SendKeyStroke.Send("ESCAPE");
+        }
     }
 
     #region Databases

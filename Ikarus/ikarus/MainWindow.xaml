@@ -285,7 +285,7 @@
                             <DataGridTextColumn Width="65"
                                                 Binding="{Binding DcsID}"
                                                 Header="DCS ID"
-                                                IsReadOnly="True">
+                                                IsReadOnly="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Setter Property="TextAlignment" Value="Center" />
@@ -905,6 +905,7 @@
                             Content="Ikarus PC:  IP"
                             Foreground="#FFF9F9F9"
                             RenderTransformOrigin="0.286,0.423" />
+                        <Button x:Name="Send_ESC" Content="Send ESC" Grid.Column="1" Margin="0,288,10,0" VerticalAlignment="Top" Click="Send_ESC_Click" Height="38" HorizontalAlignment="Right" Width="150"/>
                     </Grid>
                 </TabItem>
                 <TabItem Name="Log"
