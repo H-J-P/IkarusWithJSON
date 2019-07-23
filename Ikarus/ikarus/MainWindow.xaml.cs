@@ -26,6 +26,7 @@ namespace Ikarus
         /// <summary>
         /// https://msdn.microsoft.com/en-us/library/ee658248.aspx
         /// http://www.philosophicalgeek.com/2012/07/16/how-to-debug-gc-issues-using-perfview/
+        /// https://github.com/jasonpang/Interceptor
         /// PerfMon.exe
         /// Perfview.exe
         /// </summary>
@@ -2647,12 +2648,13 @@ namespace Ikarus
 
         private void Send_ESC_Click(object sender, RoutedEventArgs e)
         {
-            //SendKeyToHandle.SendSimulateKeyPress("ApplicationFrameWindow", "Rechner", "{ESC}");
             ProzessHelper.SetFocusToExternalApp(processNameDCS);
 
-            SendKeys.Send(Key.Home);
+            //Keyboard.SendKey(Keyboard.DirectXKeyStrokes.ESCAPE, false, Keyboard.InputType.Keyboard); // down
+            //Thread.Sleep(50);
+            //Keyboard.SendKey(Keyboard.DirectXKeyStrokes.ESCAPE, true, Keyboard.InputType.Keyboard); // up
 
-            SendKeyStroke.Send("ESCAPE");
+            Keyboard.Sendkeys("ESCAPE");
         }
     }
 
