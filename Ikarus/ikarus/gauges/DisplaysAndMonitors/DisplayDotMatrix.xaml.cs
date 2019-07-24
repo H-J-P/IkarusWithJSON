@@ -198,7 +198,7 @@ namespace Ikarus
                            {
                                if (MainWindow.editmode)
                                {
-                                   Segments.Text = new String('8', numberOfSegments);
+                                   Segments.Text = new string('8', numberOfSegments);
                                    return;
                                }
 
@@ -209,12 +209,9 @@ namespace Ikarus
                                if (!isAscii)
                                {
                                    value = Convert.ToDouble(vals[0], CultureInfo.InvariantCulture);
-
-                                   if (value < 1)
-                                   {
-                                       value *= 10;
-                                       textForDisplay = value.ToString().Substring(0, numberOfSegments);
-                                   }
+                                   value *= 10;
+                                   value = Convert.ToInt16(value);
+                                   textForDisplay = value.ToString(); //.Substring(0, numberOfSegments);
                                }
                                Segments.Text = helper.CleanUpDisplayString(textForDisplay);
                            }

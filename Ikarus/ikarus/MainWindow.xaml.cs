@@ -1315,11 +1315,11 @@ namespace Ikarus
                                             {
                                                 instruments[i].instrumentFunction[n].value = double.Parse(newGrabValue, CultureInfo.InvariantCulture);
 
-                                                if (instruments[i].instrumentFunction[n].value != instruments[i].instrumentFunction[n].oldValue || initInstruments)
-                                                {
+                                                //if (instruments[i].instrumentFunction[n].value != instruments[i].instrumentFunction[n].oldValue || initInstruments)
+                                                //{
                                                     refreshInstruments = true;
                                                     instruments[i].instrumentFunction[n].oldValue = instruments[i].instrumentFunction[n].value;
-                                                }
+                                                //}
                                             }
                                             catch
                                             {
