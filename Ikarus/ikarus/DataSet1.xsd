@@ -96,6 +96,7 @@
               <xs:element name="DcsID" msprop:Generator_ColumnVarNameInTable="columnDcsID" msprop:Generator_ColumnPropNameInRow="DcsID" msprop:Generator_ColumnPropNameInTable="DcsIDColumn" msprop:Generator_UserColumnName="DcsID" type="xs:string" minOccurs="0" />
               <xs:element name="DeviceID" msprop:Generator_ColumnVarNameInTable="columnDeviceID" msprop:Generator_ColumnPropNameInRow="DeviceID" msprop:Generator_ColumnPropNameInTable="DeviceIDColumn" msprop:Generator_UserColumnName="DeviceID" type="xs:string" default="-" minOccurs="0" />
               <xs:element name="ButtonID" msprop:Generator_ColumnVarNameInTable="columnButtonID" msprop:Generator_ColumnPropNameInRow="ButtonID" msprop:Generator_ColumnPropNameInTable="ButtonIDColumn" msprop:Generator_UserColumnName="ButtonID" type="xs:string" default="-" minOccurs="0" />
+              <xs:element name="Keyboard" msprop:Generator_ColumnVarNameInTable="columnKeyboard" msprop:Generator_ColumnPropNameInRow="Keyboard" msprop:Generator_ColumnPropNameInTable="KeyboardColumn" msprop:Generator_UserColumnName="Keyboard" type="xs:string" default="-" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

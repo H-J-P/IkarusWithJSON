@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:Instruments" ZOrder="8" X="290" Y="7" Height="258" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="24" SplitterPosition="254" />
     <Shape ID="DesignTable:Functions" ZOrder="7" X="471" Y="8" Height="429" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="24" SplitterPosition="425" />
     <Shape ID="DesignTable:Lamps" ZOrder="6" X="831" Y="8" Height="372" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="368" />
-    <Shape ID="DesignTable:Switches" ZOrder="5" X="654" Y="8" Height="429" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="425" />
+    <Shape ID="DesignTable:Switches" ZOrder="5" X="654" Y="8" Height="467" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="463" />
     <Shape ID="DesignTable:Accessories" ZOrder="4" X="1018" Y="9" Height="258" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:Parameter" ZOrder="2" X="1204" Y="7" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
     <Shape ID="DesignTable:Window" ZOrder="1" X="88" Y="9" Height="258" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />

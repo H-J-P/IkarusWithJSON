@@ -307,6 +307,9 @@
                             <DataGridTextColumn Width="210"
                                                 Binding="{Binding Name}"
                                                 Header="Function" />
+                            <DataGridTextColumn Width="120"
+                                                Binding="{Binding Keyboard}"
+                                                Header="Keyboard" />
                             <DataGridTextColumn Width="60"
                                                 Binding="{Binding DeviceID}"
                                                 Header="DeviceID" />

@@ -1006,13 +1006,9 @@ namespace Ikarus
                     {
                         switches.Add(new Switches(Convert.ToInt32(dtSwitches.Rows[i]["ID"]), Convert.ToInt32(dtSwitches.Rows[i]["WindowID"]), Convert.ToInt32(dtSwitches.Rows[i]["ClickabledataID"]), dtSwitches.Rows[i]["Class"].ToString()));
 
-//<<<<<<< HEAD
                         deviceIdent = dtSwitches.Rows[i]["DeviceID"].ToString();
 
                         if (dtMasterSwitches != null && deviceIdent == "")
-//=======
-//                        if (dtMasterSwitches != null && dtSwitches.Rows[i]["DeviceID"].ToString() == null)
-//>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
                         {
                             if (switches[i].clickabledataID.ToString() != "0")
                             {
@@ -1034,8 +1030,17 @@ namespace Ikarus
                                         switches[i].buttonID = Convert.ToInt32(dataRowsMasterSwitches[0]["ButtonID"]);
                                         dtSwitches.Rows[i]["ButtonID"] = switches[i].buttonID;
                                     }
+                                    if (dataRowsMasterSwitches[0]["Keyboard"].ToString() != "")
+                                    {
+                                        switches[i].keyboard = dataRowsMasterSwitches[0]["Keyboard"].ToString();
+                                        dtSwitches.Rows[i]["Keyboard"] = switches[i].keyboard;
+                                    }
+                                    else
+                                    {
+                                        dtSwitches.Rows[i]["Keyboard"] = "-";
+                                        switches[i].keyboard = dtSwitches.Rows[i]["Keyboard"].ToString();
+                                    }
                                 }
-//<<<<<<< HEAD
                             }
                         }
                         else
@@ -1051,21 +1056,17 @@ namespace Ikarus
                             if (dtSwitches.Rows[i]["ButtonID"].ToString() != "")
                             {
                                 switches[i].buttonID = Convert.ToInt32(dtSwitches.Rows[i]["ButtonID"].ToString());
-//=======
-//>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
+                            }
+                            if (dtSwitches.Rows[i]["Keyboard"].ToString() != "")
+                            {
+                                switches[i].keyboard = dtSwitches.Rows[i]["Keyboard"].ToString();
+                            }
+                            else
+                            {
+                                dtSwitches.Rows[i]["Keyboard"] = "-";
+                                switches[i].keyboard = dtSwitches.Rows[i]["Keyboard"].ToString();
                             }
                         }
-                        //else
-                        //{
-                        //    if (dtSwitches.Rows[i]["DcsID"].ToString() != "")
-                        //        switches[i].dcsID = Convert.ToInt32(dtSwitches.Rows[i]["DcsID"].ToString());
-
-                        //    if (dtSwitches.Rows[i]["DeviceID"].ToString() != "")
-                        //        switches[i].deviceID = Convert.ToInt32(dtSwitches.Rows[i]["DeviceID"].ToString());
-
-                        //    if (dtSwitches.Rows[i]["ButtonID"].ToString() != "")
-                        //        switches[i].buttonID = Convert.ToInt32(dtSwitches.Rows[i]["ButtonID"].ToString());
-                        //}
                     }
                     catch (Exception e)
                     {
@@ -2714,6 +2715,7 @@ namespace Ikarus
         public int windowID = 0;
         public int clickabledataID = 0;
         public string classname = "";
+        public string keyboard = "";
 
         public int dcsID = 0;
         public int deviceID = 0;

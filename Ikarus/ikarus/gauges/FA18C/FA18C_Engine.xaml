@@ -120,6 +120,14 @@
             <Path x:Name="Path_23" Width="0.881348" Height="0.877319" Canvas.Left="236.585" Canvas.Top="170.079" Stretch="Fill" Fill="#FF000000" Data="M 237.467,170.517C 237.467,170.275 237.269,170.079 237.027,170.079C 236.783,170.079 236.585,170.275 236.585,170.517C 236.585,170.759 236.783,170.956 237.027,170.956C 237.269,170.956 237.467,170.759 237.467,170.517 Z "/>
         </Canvas>
         <Canvas x:Name="NOZ_left" Width="549" Height="380" Canvas.Left="0" Canvas.Top="0" Margin="2,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.074,0.449">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-1"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Canvas.RenderTransform>
             <Path x:Name="Path_24" Width="2.936" Height="2.92267" Canvas.Left="38.4733" Canvas.Top="169.056" Stretch="Fill" Fill="#FFFFFFFF" Data="M 38.4733,170.517C 38.4733,169.709 39.1307,169.056 39.9413,169.056C 40.752,169.056 41.4093,169.709 41.4093,170.517C 41.4093,171.324 40.752,171.979 39.9413,171.979C 39.1307,171.979 38.4733,171.324 38.4733,170.517 Z "/>
             <Path x:Name="Path_25" Width="31.9693" Height="4.43066" Canvas.Left="72.156" Canvas.Top="168.299" Stretch="Fill" Fill="#FFFFFFFF" Data="M 95.516,172.729L 103.899,170.803C 104.032,170.771 104.125,170.655 104.125,170.517C 104.125,170.38 104.033,170.263 103.899,170.232L 95.4373,168.299L 72.156,169.219L 72.1827,171.771L 95.516,172.729 Z "/>
             <Path x:Name="Path_26" Width="0.881336" Height="0.877319" Canvas.Left="39.5013" Canvas.Top="170.079" Stretch="Fill" Fill="#FF000000" Data="M 39.5013,170.517C 39.5013,170.275 39.6987,170.079 39.9413,170.079C 40.1853,170.079 40.3827,170.275 40.3827,170.517C 40.3827,170.759 40.1853,170.956 39.9413,170.956C 39.6987,170.956 39.5013,170.759 39.5013,170.517 Z "/>

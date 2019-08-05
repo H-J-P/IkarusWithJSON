@@ -1908,6 +1908,8 @@ namespace Ikarus {
             
             private global::System.Data.DataColumn columnButtonID;
             
+            private global::System.Data.DataColumn columnKeyboard;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SwitchesDataTable() {
@@ -2111,6 +2113,14 @@ namespace Ikarus {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn KeyboardColumn {
+                get {
+                    return this.columnKeyboard;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2166,7 +2176,8 @@ namespace Ikarus {
                         int WindowID, 
                         string DcsID, 
                         string DeviceID, 
-                        string ButtonID) {
+                        string ButtonID, 
+                        string Keyboard) {
                 SwitchesRow rowSwitchesRow = ((SwitchesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2189,7 +2200,8 @@ namespace Ikarus {
                         WindowID,
                         DcsID,
                         DeviceID,
-                        ButtonID};
+                        ButtonID,
+                        Keyboard};
                 rowSwitchesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSwitchesRow);
                 return rowSwitchesRow;
@@ -2233,6 +2245,7 @@ namespace Ikarus {
                 this.columnDcsID = base.Columns["DcsID"];
                 this.columnDeviceID = base.Columns["DeviceID"];
                 this.columnButtonID = base.Columns["ButtonID"];
+                this.columnKeyboard = base.Columns["Keyboard"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2280,6 +2293,8 @@ namespace Ikarus {
                 base.Columns.Add(this.columnDeviceID);
                 this.columnButtonID = new global::System.Data.DataColumn("ButtonID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnButtonID);
+                this.columnKeyboard = new global::System.Data.DataColumn("Keyboard", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKeyboard);
                 this.columnID.AutoIncrement = true;
                 this.columnID.AutoIncrementSeed = 1;
                 this.columnID.AllowDBNull = false;
@@ -2303,6 +2318,7 @@ namespace Ikarus {
                 this.columnWindowID.DefaultValue = ((int)(1));
                 this.columnDeviceID.DefaultValue = ((string)("-"));
                 this.columnButtonID.DefaultValue = ((string)("-"));
+                this.columnKeyboard.DefaultValue = ((string)("-"));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5020,6 +5036,22 @@ namespace Ikarus {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Keyboard {
+                get {
+                    try {
+                        return ((string)(this[this.tableSwitches.KeyboardColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Keyboard in Tabelle Switches ist DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSwitches.KeyboardColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsClassNull() {
                 return this.IsNull(this.tableSwitches.ClassColumn);
             }
@@ -5256,6 +5288,18 @@ namespace Ikarus {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetButtonIDNull() {
                 this[this.tableSwitches.ButtonIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsKeyboardNull() {
+                return this.IsNull(this.tableSwitches.KeyboardColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetKeyboardNull() {
+                this[this.tableSwitches.KeyboardColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -113,7 +113,7 @@ namespace Ikarus
                                    {
                                        if (nozzleR >= valueScale[n] && nozzleR <= valueScale[n + 1])
                                        {
-                                           rtNozzleR.Angle = -1 * (degreeDial[n] - degreeDial[n + 1]) / (valueScale[n] - valueScale[n + 1]) * (nozzleR - valueScale[n]) + degreeDial[n];
+                                           rtNozzleR.Angle = -1 * ((degreeDial[n] - degreeDial[n + 1]) / (valueScale[n] - valueScale[n + 1]) * (nozzleR - valueScale[n]) + degreeDial[n]);
                                            break;
                                        }
                                    }
