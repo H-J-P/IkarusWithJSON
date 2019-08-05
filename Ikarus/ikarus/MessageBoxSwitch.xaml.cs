@@ -15,6 +15,7 @@ namespace Ikarus
         private static int clickable = 0;
         private static string name = "";
         private static string classname = "";
+        private static string keyboard = "";
         private static string pictureOn = "";
         private static string pictureOff = "";
         private static string picture2On = "";
@@ -50,6 +51,7 @@ namespace Ikarus
                     classname = dataRows[0]["Class"].ToString();
                     clickable = Convert.ToInt32(dataRows[0]["ClickabledataID"]);
                     name = dataRows[0]["Name"].ToString();
+                    keyboard = dataRows[0]["Keyboard"].ToString();
                     pictureOn = dataRows[0]["FilePictureOn"].ToString();
                     pictureOff = dataRows[0]["FilePictureOff"].ToString();
                     picture2On = dataRows[0]["FilePicture2On"].ToString();
@@ -88,6 +90,7 @@ namespace Ikarus
             WindowID.SelectedIndex = Convert.ToInt16(windowID) - 1;
 
             Classname.Text = classname;
+            Keyboards.Text = keyboard;
             ImageOn.Text = pictureOn;
             ImageOff.Text = pictureOff;
             Image2on.Text = picture2On;
@@ -228,6 +231,7 @@ namespace Ikarus
 
                     dataRows[0]["DcsID"] = DcsID.Text;
                     dataRows[0]["Name"] = NameFct.Text;
+                    dataRows[0]["Keyboard"] = Keyboards.Text;
                     dataRows[0]["FilePictureOn"] = ImageOn.Text;
                     dataRows[0]["FilePictureOff"] = ImageOff.Text;
                     dataRows[0]["FilePicture2On"] = Image2on.Text;
