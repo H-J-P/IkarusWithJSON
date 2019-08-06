@@ -44,7 +44,7 @@ namespace Ikarus
         public enum DirectXKeyStrokes
         {
             ESCAPE = 0x01,
-            ESC = ESCAPE,
+            //ESC = ESCAPE,
             VK_1 = 0x02,
             VK_2 = 0x03,
             VK_3 = 0x04,
@@ -327,6 +327,8 @@ namespace Ikarus
                 Thread.Sleep(50);
 
                 SendKey(keyPressed, true, InputType.Keyboard); // up
+
+                if (MainWindow.detailLog || MainWindow.switchLog) { ImportExport.LogMessage("Send keystroke: " + key, true); }
             }
             catch (Exception e) { ImportExport.LogMessage("Sendkeys '" + key + "' got data and failed with exception: " + e.ToString()); }
         }
@@ -345,6 +347,8 @@ namespace Ikarus
 
                 SendKey(keyPressed, true, InputType.Keyboard); // up
                 SendKey(keyOption, true, InputType.Keyboard); // up
+
+                if (MainWindow.detailLog || MainWindow.switchLog) { ImportExport.LogMessage("Send keystroke: " + optionKey + " " + key, true); }
             }
             catch (Exception e) { ImportExport.LogMessage("Sendkeys '" + optionKey + "' and '" + key + "' got data and failed with exception: " + e.ToString()); }
         }
@@ -366,6 +370,8 @@ namespace Ikarus
                 SendKey(keyPressed, true, InputType.Keyboard); // up
                 SendKey(keyOptionB, true, InputType.Keyboard); // up
                 SendKey(keyOptionA, true, InputType.Keyboard); // up
+
+                if (MainWindow.detailLog || MainWindow.switchLog) { ImportExport.LogMessage("Send keystroke: " + optionKeyA + " " + optionKeyB + " " + key, true); }
             }
             catch (Exception e) { ImportExport.LogMessage("Sendkeys '" + optionKeyA + "' and '"+ optionKeyB + "' and '" + key + "' got data and failed with exception: " + e.ToString()); }
         }

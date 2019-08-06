@@ -59,6 +59,7 @@ namespace Ikarus
         private bool lightsChecked = false;
         private bool lStateEnabled = true;
         private bool lUdpEnabled = true;
+        private bool lkeystroke = true;
         private bool idFound = false;
 
         public static bool refreshCockpit = false;
@@ -106,6 +107,7 @@ namespace Ikarus
         public static List<Switches> switches = new List<Switches> { };
         private static List<string> updateLamp = new List<string>();
         public static List<MainWindow> mainWindow = new List<MainWindow>();
+        public static List<string> keystrokes = new List<string>();
 
         private static Thread udpThread = null;
 
@@ -382,6 +384,24 @@ namespace Ikarus
         {
             try
             {
+                if (keystrokes.Count > 0)
+                {
+                    if (lkeystroke)
+                    {
+                        lkeystroke = false;
+
+                        ProzessHelper.SetFocusToExternalApp(processNameDCS);
+
+                        Thread.Sleep(10);
+
+                        Keyboard.Sendkeys(keystrokes[0]);
+
+                        keystrokes.RemoveAt(0);
+
+                        lkeystroke = true;
+                    }
+                }
+
                 if (UDP.receivedDataStack.Count > 0)
                 {
                     if (lUdpEnabled)
@@ -402,6 +422,9 @@ namespace Ikarus
             catch (Exception f)
             {
                 ImportExport.LogMessage("UdpTimerTick ... " + f.ToString(), true);
+
+                lUdpEnabled = true;
+                lkeystroke = true;
             }
         }
 
@@ -2649,13 +2672,9 @@ namespace Ikarus
 
         private void Send_ESC_Click(object sender, RoutedEventArgs e)
         {
-            ProzessHelper.SetFocusToExternalApp(processNameDCS);
+            e.Handled = true;
 
-            //Keyboard.SendKey(Keyboard.DirectXKeyStrokes.ESCAPE, false, Keyboard.InputType.Keyboard); // down
-            //Thread.Sleep(50);
-            //Keyboard.SendKey(Keyboard.DirectXKeyStrokes.ESCAPE, true, Keyboard.InputType.Keyboard); // up
-
-            Keyboard.Sendkeys("ESCAPE");
+            keystrokes.Add("ESCAPE");
         }
     }
 
