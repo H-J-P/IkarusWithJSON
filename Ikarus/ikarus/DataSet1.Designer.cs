@@ -1461,6 +1461,14 @@ namespace Ikarus {
             
             private global::System.Data.DataColumn columnWindowID;
             
+            private global::System.Data.DataColumn columnType;
+            
+            private global::System.Data.DataColumn columnIDType;
+            
+            private global::System.Data.DataColumn columnFormat;
+            
+            private global::System.Data.DataColumn columnnegateValue;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public LampsDataTable() {
@@ -1600,6 +1608,38 @@ namespace Ikarus {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TypeColumn {
+                get {
+                    return this.columnType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IDTypeColumn {
+                get {
+                    return this.columnIDType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FormatColumn {
+                get {
+                    return this.columnFormat;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn negateValueColumn {
+                get {
+                    return this.columnnegateValue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1635,7 +1675,23 @@ namespace Ikarus {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public LampsRow AddLampsRow(string Class, int Arg_number, string Name, double Value, double OldValue, string FilePictureOn, string FilePictureOff, int PosX, int PosY, int Size, int Rotate, int WindowID) {
+            public LampsRow AddLampsRow(
+                        string Class, 
+                        int Arg_number, 
+                        string Name, 
+                        double Value, 
+                        double OldValue, 
+                        string FilePictureOn, 
+                        string FilePictureOff, 
+                        int PosX, 
+                        int PosY, 
+                        int Size, 
+                        int Rotate, 
+                        int WindowID, 
+                        string Type, 
+                        string IDType, 
+                        string Format, 
+                        string negateValue) {
                 LampsRow rowLampsRow = ((LampsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1650,7 +1706,11 @@ namespace Ikarus {
                         PosY,
                         Size,
                         Rotate,
-                        WindowID};
+                        WindowID,
+                        Type,
+                        IDType,
+                        Format,
+                        negateValue};
                 rowLampsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLampsRow);
                 return rowLampsRow;
@@ -1686,6 +1746,10 @@ namespace Ikarus {
                 this.columnSize = base.Columns["Size"];
                 this.columnRotate = base.Columns["Rotate"];
                 this.columnWindowID = base.Columns["WindowID"];
+                this.columnType = base.Columns["Type"];
+                this.columnIDType = base.Columns["IDType"];
+                this.columnFormat = base.Columns["Format"];
+                this.columnnegateValue = base.Columns["negateValue"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1717,6 +1781,14 @@ namespace Ikarus {
                 base.Columns.Add(this.columnRotate);
                 this.columnWindowID = new global::System.Data.DataColumn("WindowID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnWindowID);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnType);
+                this.columnIDType = new global::System.Data.DataColumn("IDType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDType);
+                this.columnFormat = new global::System.Data.DataColumn("Format", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFormat);
+                this.columnnegateValue = new global::System.Data.DataColumn("negateValue", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnegateValue);
                 this.columnID.AutoIncrement = true;
                 this.columnID.AutoIncrementSeed = 1;
                 this.columnID.AllowDBNull = false;
@@ -1733,6 +1805,10 @@ namespace Ikarus {
                 this.columnSize.DefaultValue = ((int)(120));
                 this.columnRotate.DefaultValue = ((int)(0));
                 this.columnWindowID.DefaultValue = ((int)(1));
+                this.columnType.DefaultValue = ((string)("ID"));
+                this.columnIDType.DefaultValue = ((string)("-"));
+                this.columnFormat.DefaultValue = ((string)("-"));
+                this.columnnegateValue.DefaultValue = ((string)("0"));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4546,6 +4622,70 @@ namespace Ikarus {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Type {
+                get {
+                    try {
+                        return ((string)(this[this.tableLamps.TypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Type in Tabelle Lamps ist DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLamps.TypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string IDType {
+                get {
+                    try {
+                        return ((string)(this[this.tableLamps.IDTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte IDType in Tabelle Lamps ist DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLamps.IDTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Format {
+                get {
+                    try {
+                        return ((string)(this[this.tableLamps.FormatColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Format in Tabelle Lamps ist DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLamps.FormatColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string negateValue {
+                get {
+                    try {
+                        return ((string)(this[this.tableLamps.negateValueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte negateValue in Tabelle Lamps ist DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLamps.negateValueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsClassNull() {
                 return this.IsNull(this.tableLamps.ClassColumn);
             }
@@ -4686,6 +4826,54 @@ namespace Ikarus {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetWindowIDNull() {
                 this[this.tableLamps.WindowIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTypeNull() {
+                return this.IsNull(this.tableLamps.TypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTypeNull() {
+                this[this.tableLamps.TypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIDTypeNull() {
+                return this.IsNull(this.tableLamps.IDTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIDTypeNull() {
+                this[this.tableLamps.IDTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFormatNull() {
+                return this.IsNull(this.tableLamps.FormatColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFormatNull() {
+                this[this.tableLamps.FormatColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnegateValueNull() {
+                return this.IsNull(this.tableLamps.negateValueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnegateValueNull() {
+                this[this.tableLamps.negateValueColumn] = global::System.Convert.DBNull;
             }
         }
         

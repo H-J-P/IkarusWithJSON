@@ -110,6 +110,10 @@ namespace Ikarus
                                    byte[] utf8Bytes = Encoding.UTF8.GetBytes(vals[3]);
                                    turnLight = Encoding.UTF8.GetString(utf8Bytes);
                                }
+                               displayWindow = helper.CleanUpDisplayString(displayWindow);
+                               failLight = helper.CleanUpDisplayString(failLight);
+                               memoryLight = helper.CleanUpDisplayString(memoryLight);
+                               turnLight = helper.CleanUpDisplayString(turnLight);
 
                                DisplayWindow.Text = displayWindow.Replace("0", "O");
                                FAILLight.Text = failLight.Replace("0", "O");

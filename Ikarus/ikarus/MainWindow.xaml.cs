@@ -697,12 +697,13 @@ namespace Ikarus
                             if (name.Length > 20) { name = name.Substring(0, 20); }
 
                             dataRow = dtJson.NewRow();
+
                             dataRow["Description"] = name;
-                            dataRow["Type"] = "ID";
-                            dataRow["ID"] = dtLamps.Rows[i]["Arg_number"].ToString();
-                            dataRow["Format"] = "float4";
+                            dataRow["Type"] = dtLamps.Rows[i]["Type"].ToString() == "-" ? "ID" : dtLamps.Rows[i]["Type"].ToString();
+                            dataRow["ID"] = dtLamps.Rows[i]["IDType"].ToString() == "-" ? dtLamps.Rows[i]["Arg_number"].ToString() : dtLamps.Rows[i]["IDType"].ToString();
+                            dataRow["Format"] = dtLamps.Rows[i]["Format"].ToString() == "-" ? "float4" : dtLamps.Rows[i]["Format"].ToString();
                             dataRow["ExportID"] = dtLamps.Rows[i]["Arg_number"].ToString();
-                            dataRow["negateValue"] = "0";
+                            dataRow["negateValue"] = dtLamps.Rows[i]["negateValue"].ToString();
 
                             dtJson.Rows.Add(dataRow);
 
@@ -804,20 +805,6 @@ namespace Ikarus
 
                     UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
 
-//=======
-
-//                    json = JsonConvert.SerializeObject(dsJSON, Formatting.None);
-
-//                    dsJSON.Tables.Remove(dtJson);
-
-//                    string configIDString = "{'ConfigID': " + configID + ", ";
-//                    configIDString = configIDString.Replace("'", '"'.ToString());
-
-//                    json = configIDString + json.Substring(1, json.Length - 1);
-
-//                    UDP.UDPSender(IPAddess.Text.Trim(), Convert.ToInt32(PortSender.Text), json);
-
-//>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
                     if (!detailLog && !switchLog) { ImportExport.LogMessage("Send json data for cockpit: " + loadCockpit + " -> " + json.Length + " bytes."); }
                 }
             }
@@ -1021,6 +1008,23 @@ namespace Ikarus
                 for (int i = 0; i < dtLamps.Rows.Count; i++)
                 {
                     lamps.Add(new Lamps(Convert.ToInt32(dtLamps.Rows[i]["ID"]), Convert.ToInt32(dtLamps.Rows[i]["Arg_number"]), Convert.ToInt32(dtLamps.Rows[i]["WindowID"])));
+
+                    if (dtLamps.Rows[i]["Type"].ToString() == "")
+                    {
+                        dtLamps.Rows[i]["Type"] = "ID";
+                    }
+                    if (dtLamps.Rows[i]["IDType"].ToString() == "")
+                    {
+                        dtLamps.Rows[i]["IDType"] = "-";
+                    }
+                    if (dtLamps.Rows[i]["Format"].ToString() == "")
+                    {
+                        dtLamps.Rows[i]["Format"] = "-";
+                    }
+                    if (dtLamps.Rows[i]["negateValue"].ToString() == "")
+                    {
+                        dtLamps.Rows[i]["negateValue"] = "0";
+                    }
                 }
 
                 for (int i = 0; i < dtSwitches.Rows.Count; i++) // used switches

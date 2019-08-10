@@ -389,8 +389,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Name="DetailLamp"
-                                                Width="10"
-                                                Click="Button_DetailLamp_Click" Visibility="Hidden">
+                                                Width="50"
+                                                Click="Button_DetailLamp_Click" Visibility="Visible">
                                             Detail
                                         </Button>
                                     </DataTemplate>
@@ -476,6 +476,22 @@
                                                 Width="200"
                                                 Binding="{Binding FilePictureOff}"
                                                 Header="Image OFF" />
+                            <DataGridTextColumn x:Name="Type"
+                                                Width="120"
+                                                Binding="{Binding Type}"
+                                                Header="Type" />
+                            <DataGridTextColumn x:Name="IDType"
+                                                Width="80"
+                                                Binding="{Binding IDType}"
+                                                Header="ID" />
+                            <DataGridTextColumn x:Name="Format"
+                                                Width="80"
+                                                Binding="{Binding Format}"
+                                                Header="Format" />
+                            <DataGridTextColumn x:Name="negateValue"
+                                                Width="80"
+                                                Binding="{Binding negateValue}"
+                                                Header="negateValue" />
                         </DataGrid.Columns>
                     </DataGrid>
 
