@@ -20,8 +20,13 @@ namespace Ikarus
         private static string posY = "";
         private static string size = "";
         private static string rotate = "";
-        private static DataTable lamps = new DataTable();
         private static string windowID = "";
+        private static string type = "";
+        private static string idType = "";
+        private static string format = "";
+        private static string negateValue = "";
+
+        private static DataTable lamps = new DataTable();
 
         public MessageBoxLamps(int _id)
         {
@@ -42,6 +47,10 @@ namespace Ikarus
                     size = dataRows[0]["Size"].ToString();
                     rotate = dataRows[0]["Rotate"].ToString();
                     windowID = dataRows[0]["WindowID"].ToString();
+                    type = dataRows[0]["Type"].ToString();
+                    idType = dataRows[0]["IDType"].ToString();
+                    format = dataRows[0]["Format"].ToString();
+                    negateValue = dataRows[0]["negateValue"].ToString();
                 }
             }
             catch (Exception ex) { ImportExport.LogMessage("Transmit Lamp: " + ex.ToString()); }
@@ -58,52 +67,59 @@ namespace Ikarus
         {
             InitializeComponent();
 
-            DataRow[] dr = null;
+            //DataRow[] dr = null;
 
-            if (MainWindow.dtMasterLamps != null)
-            {
-                dr = MainWindow.dtMasterLamps.Select("Type='Lamp'", "ExportID" );
-                lamps = dr.CopyToDataTable<DataRow>();
-                DataGridLamps.ItemsSource = lamps.DefaultView;
-                DataGridLamps.CanUserAddRows = false;
-                DataGridLamps.CanUserDeleteRows = true;
-                DataGridLamps.IsReadOnly = false;
+            //if (MainWindow.dtMasterLamps != null)
+            //{
+            //    dr = MainWindow.dtMasterLamps.Select("Type='Lamp'", "ExportID" );
+            //    lamps = dr.CopyToDataTable<DataRow>();
+            //    DataGridLamps.ItemsSource = lamps.DefaultView;
+            //    DataGridLamps.CanUserAddRows = false;
+            //    DataGridLamps.CanUserDeleteRows = true;
+            //    DataGridLamps.IsReadOnly = false;
 
-                DataGridLamps.ScrollIntoView(DataGridLamps.Items[DataGridLamps.Items.Count - 1]);
-                try
-                {
-                    if (arg_number != 0)
-                    {
-                        for (int n = 0; n < dr.Length; n++)
-                        {
-                            if (Convert.ToInt32(dr[n][0]) == arg_number)
-                            {
-                                DataGridLamps.SelectedIndex = n;
-                                DataGridLamps.ScrollIntoView(DataGridLamps.Items[n]);
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //DataGridLamps.SelectedIndex = 0;
-                        DataGridLamps.ScrollIntoView(DataGridLamps.Items[0]);
-                    }
-                }
-                catch { }
-            }
+            //    DataGridLamps.ScrollIntoView(DataGridLamps.Items[DataGridLamps.Items.Count - 1]);
+            //    try
+            //    {
+            //        if (arg_number != 0)
+            //        {
+            //            for (int n = 0; n < dr.Length; n++)
+            //            {
+            //                if (Convert.ToInt32(dr[n][0]) == arg_number)
+            //                {
+            //                    DataGridLamps.SelectedIndex = n;
+            //                    DataGridLamps.ScrollIntoView(DataGridLamps.Items[n]);
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            //DataGridLamps.SelectedIndex = 0;
+            //            DataGridLamps.ScrollIntoView(DataGridLamps.Items[0]);
+            //        }
+            //    }
+            //    catch { }
+            //}
 
             WindowID.ItemsSource = null;
             WindowID.ItemsSource = MainWindow.dtWindows.DefaultView;
             WindowID.SelectedIndex = Convert.ToInt16(windowID) - 1;
 
             Classname.Text = classname;
+            NameFct.Text = name;
+            DcsID.Text = arg_number.ToString();
             ImageOn.Text = pictureOn;
             ImageOff.Text = pictureOff;
             PosX.Text = posX;
             PosY.Text = posY;
             Size.Text = size;
             Rotate.Text = rotate;
+
+            Typ.Text = type;
+            IDType.Text = idType;
+            Format.Text = format;
+            NegateValue.Text = negateValue;
 
             Show();
         }
@@ -136,19 +152,19 @@ namespace Ikarus
 
         private void UpdateData()
         {
-            if (DataGridLamps.SelectedItem == null) return;
+            //if (DataGridLamps.SelectedItem == null) return;
 
             try
             {
-                DataRowView rowView = (DataRowView)DataGridLamps.SelectedItem;
+                //DataRowView rowView = (DataRowView)DataGridLamps.SelectedItem;
 
                 DataRow[] dataRows = MainWindow.dtLamps.Select("ID=" + id);
 
                 if (dataRows.Length > 0)
                 {
                     dataRows[0]["Class"] = Classname.Text;
-                    dataRows[0]["Arg_number"] = Convert.ToInt32(rowView.Row.ItemArray[0]);
-                    dataRows[0]["Name"] = rowView.Row.ItemArray[2];
+                    dataRows[0]["Arg_number"] = Convert.ToInt32(DcsID.Text);
+                    dataRows[0]["Name"] = NameFct.Text;
                     dataRows[0]["FilePictureOn"] = ImageOn.Text;
                     dataRows[0]["FilePictureOff"] = ImageOff.Text;
                     dataRows[0]["PosX"] = PosX.Text;
@@ -156,6 +172,11 @@ namespace Ikarus
                     dataRows[0]["Size"] = Size.Text;
                     dataRows[0]["Rotate"] = Rotate.Text;
                     dataRows[0]["WindowID"] = WindowID.SelectedIndex + 1;
+
+                    dataRows[0]["Type"] = Typ.Text;
+                    dataRows[0]["IDType"] = IDType.Text;
+                    dataRows[0]["Format"] = Format.Text;
+                    dataRows[0]["negateValue"] = NegateValue.Text;
                 }
             }
             catch (Exception ex) { ImportExport.LogMessage("Transmit Lamp: " + ex.ToString()); }

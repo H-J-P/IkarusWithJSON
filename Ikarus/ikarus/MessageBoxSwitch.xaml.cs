@@ -29,11 +29,6 @@ namespace Ikarus
         private static string dcsID = "";
         private static string deviceID = "";
         private static string buttonID = "";
-//<<<<<<< HEAD
-//        //private static string function = "";
-//=======
-//        private static string function = "";
-//>>>>>>> 06a792e7a2d72232915220553d327b90857213fb
 
         private static DataTable switches = new DataTable();
         //private static DataRow[] dataRows = null;
