@@ -13,6 +13,7 @@ namespace Ikarus
         private string dataImportID = "";
         private int windowID = 0;
         private string tableName;
+        private string abc = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         public GaugesHelper(string _dataImportID, int _windowID, string _tableName)
         {
@@ -72,6 +73,17 @@ namespace Ikarus
             }
             catch { }
             return cleanit;
+        }
+
+        public string IsABCString(string value)
+        {
+
+            foreach (char c in value.ToUpper())
+            {
+                if (abc.Contains(char.ToString(c)))
+                    return "VK_" + value;
+            }
+            return value;
         }
 
         public void MakeDraggable(System.Windows.UIElement moveThisElement, System.Windows.UIElement movedByElement)
