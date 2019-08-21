@@ -106,7 +106,7 @@ namespace Ikarus
                                    }
                                }
                                lreadValue = readValue;
-                               OILT.Text = readValue.ToString();
+                               //OILT.Text = readValue.ToString();
                            }
                            catch (Exception e) { ImportExport.LogMessage(GetType().Name + " got data and failed with exception: " + e.ToString()); }
                        }));
