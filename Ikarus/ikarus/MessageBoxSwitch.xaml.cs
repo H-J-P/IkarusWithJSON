@@ -100,6 +100,8 @@ namespace Ikarus
             ButtonID.Text = buttonID;
             NameFct.Text = name;
 
+            EnableDisable();
+
             //NameFct
             //if (MainWindow.dtMasterSwitches != null)
             //{
@@ -130,6 +132,39 @@ namespace Ikarus
             //    catch { }
             //}
             Show();
+        }
+
+        private void EnableDisable()
+        {
+            if (classname.Contains("VK"))
+            {
+                Input.Visibility = Visibility.Hidden;
+                Output.Visibility = Visibility.Hidden;
+                DcsID.Visibility = Visibility.Hidden;
+                DeviceID.Visibility = Visibility.Hidden;
+                ButtonID.Visibility = Visibility.Hidden;
+                //Key_board.Visibility = Visibility.Visible;
+                Label_Input.Visibility = Visibility.Hidden;
+                Label_Output.Visibility = Visibility.Hidden;
+                Label_DcsID.Visibility = Visibility.Hidden;
+                Label_DeviceID.Visibility = Visibility.Hidden;
+                Label_ButtonID.Visibility = Visibility.Hidden;
+                //Label_Keyboards.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Input.Visibility = Visibility.Visible;
+                Output.Visibility = Visibility.Visible;
+                DcsID.Visibility = Visibility.Visible;
+                DeviceID.Visibility = Visibility.Visible;
+                ButtonID.Visibility = Visibility.Visible;
+                //Key_board.Visibility = Visibility.Hidden;
+                Label_Input.Visibility = Visibility.Visible;
+                Label_Output.Visibility = Visibility.Visible;
+                Label_DcsID.Visibility = Visibility.Visible;
+                Label_DeviceID.Visibility = Visibility.Visible;
+                Label_ButtonID.Visibility = Visibility.Visible;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -176,6 +211,8 @@ namespace Ikarus
                         Output.Text = "-1.0,0.0,1.0";
                     }
                     classNameChanged = false;
+
+                    EnableDisable();
                 }
             }
         }
@@ -269,11 +306,9 @@ namespace Ikarus
         {
             classNameChanged = true;
             ChangeSourceDatagridSwitches();
-        }
 
-        private void DataGridSwitches_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-
+            classname = Classname.Text;
+            EnableDisable();
         }
     }
 }

@@ -235,6 +235,9 @@
     <Compile Include="Gauges\AV8BNA\AV8BNA_VVI.xaml.cs">
       <DependentUpon>AV8BNA_VVI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gauges\ButtonAndSwitches\ButtonVK.xaml.cs">
+      <DependentUpon>ButtonVK.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gauges\ButtonAndSwitches\Drum.xaml.cs">
       <DependentUpon>Drum.xaml</DependentUpon>
     </Compile>
@@ -246,6 +249,9 @@
     </Compile>
     <Compile Include="Gauges\ButtonAndSwitches\RotaryRelativ.xaml.cs">
       <DependentUpon>RotaryRelativ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gauges\ButtonAndSwitches\SwitchOffOnVK.xaml.cs">
+      <DependentUpon>SwitchOffOnVK.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gauges\DisplaysAndMonitors\DisplayDotMatrixAJS.xaml.cs">
       <DependentUpon>DisplayDotMatrixAJS.xaml</DependentUpon>
@@ -1705,6 +1711,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gauges\ButtonAndSwitches\ButtonVK.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Gauges\ButtonAndSwitches\Drum.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1718,6 +1728,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Gauges\ButtonAndSwitches\RotaryRelativ.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Gauges\ButtonAndSwitches\SwitchOffOnVK.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

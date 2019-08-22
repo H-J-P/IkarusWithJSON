@@ -8,7 +8,7 @@
         Topmost="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow">
-    <Grid Height="371" VerticalAlignment="Top" HorizontalAlignment="Left" Width="419">
+    <Grid Height="374" VerticalAlignment="Top" HorizontalAlignment="Left" Width="442" Margin="0,-1,-26,-2">
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                 <GradientStop Offset="0" Color="Black" />
@@ -16,7 +16,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Width="66"
-               Margin="12,166,0,0"
+               Margin="14,166,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Image On"
@@ -45,7 +45,7 @@
         </Button>
         <Label Width="66"
                Height="16"
-               Margin="12,194,0,0"
+               Margin="14,194,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Image Off"
@@ -87,14 +87,14 @@
                   SelectedValuePath="WindowID" />
         <Button
                 Height="24"
-                Margin="78,337,0,0"
+                Margin="78,335,0,0"
                 VerticalAlignment="Top"
                 Click="Button_Click"
                 Content="Transmit" HorizontalAlignment="Left" Width="317" />
         <TextBox Name="PosX"
                  Width="40"
                  Height="23"
-                 Margin="79,246,0,0"
+                 Margin="79,305,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  Opacity="0.9"
@@ -102,18 +102,18 @@
         <TextBox Name="PosY"
                  Width="40"
                  Height="23"
-                 Margin="152,246,0,0"
+                 Margin="165,305,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TextWrapping="Wrap" />
         <Label Height="16"
-               Margin="45,250,0,0"
+               Margin="38,309,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Pos X"
                Foreground="#FFFFFEFE" />
         <Label Height="16"
-               Margin="121,249,0,0"
+               Margin="131,308,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Pos Y"
@@ -121,12 +121,12 @@
         <TextBox x:Name="Size"
                  Width="44"
                  Height="23"
-                 Margin="229,246,0,0"
+                 Margin="248,305,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TextWrapping="Wrap" />
         <Label Height="16"
-               Margin="203,250,0,0"
+               Margin="218,309,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Size"
@@ -146,6 +146,7 @@
                   VerticalAlignment="Top"
                   DropDownClosed="Classname_DropDownClosed">
             <ComboBoxItem Content="Button" />
+            <ComboBoxItem Content="ButtonVK" />
             <ComboBoxItem Content="ButtonOffOn" />
             <ComboBoxItem Content="ButtonPanelOffOn" />
             <ComboBoxItem Content="ButtonWithoutRelease" />
@@ -156,6 +157,7 @@
             <ComboBoxItem Content="RotaryRelativ" />
             <ComboBoxItem Content="RotaryUpdatable" />
             <ComboBoxItem Content="SwitchOffOn" />
+            <ComboBoxItem Content="SwitchOffOnVK" />
             <ComboBoxItem Content="SwitchOff_On" />
             <ComboBoxItem Content="SwitchOnOffOn" />
             <ComboBoxItem Content="SwitchOn_Off_On" />
@@ -170,7 +172,7 @@
                  VerticalAlignment="Top"
                  TextWrapping="Wrap" />
         <Label Width="66"
-               Margin="12,222,0,0"
+               Margin="14,222,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Image On"
@@ -191,12 +193,12 @@
         </Button>
         <TextBox x:Name="Input"
                  Width="317"
-                 Margin="79,274,0,0"
+                 Margin="79,247,0,0"
                  HorizontalAlignment="Left"
                  TextWrapping="Wrap" Height="23" VerticalAlignment="Top" />
-        <Label Width="42"
+        <Label x:Name="Label_Input" Width="42"
                Height="16"
-               Margin="37,278,0,0"
+               Margin="37,251,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Input"
@@ -204,28 +206,28 @@
         <TextBox x:Name="Output"
                  Width="317"
                  Height="23"
-                 Margin="79,302,0,0"
+                 Margin="79,275,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TextWrapping="Wrap" />
-        <Label Width="42"
+        <Label x:Name="Label_Output" Width="42"
                Height="16"
-               Margin="37,306,0,0"
+               Margin="27,280,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Output"
                Foreground="#FFFDFDFD" />
         <TextBox x:Name="Rotate"
-                 Width="65"
+                 Width="44"
                  Height="23"
-                 Margin="331,246,0,0"
+                 Margin="352,305,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TextWrapping="Wrap" RenderTransformOrigin="3.969,1.522" />
         <Label x:Name="lbRotate"
                Width="45"
                Height="16"
-               Margin="284,250,0,0"
+               Margin="311,309,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Rotate"
@@ -238,8 +240,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
-        <Label Width="41"
-            Margin="30,137,0,0"
+        <Label x:Name="Label_DcsID"  Width="41"
+            Margin="32,137,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Dcs ID"
@@ -251,7 +253,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
-        <Label Width="50"
+        <Label x:Name="Label_DeviceID" Width="50"
             Margin="148,137,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -264,7 +266,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
-        <Label Width="50"
+        <Label x:Name="Label_ButtonID" Width="50"
             Margin="276,137,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -285,7 +287,7 @@
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
         <Label Width="54"
-            Margin="19,82,0,0"
+            Margin="21,82,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Function"

@@ -77,13 +77,29 @@ namespace Ikarus
 
         public string IsABCString(string value)
         {
-
-            foreach (char c in value.ToUpper())
+            if (abc.Contains(value))
             {
-                if (abc.Contains(char.ToString(c)))
-                    return "VK_" + value;
+                return "VK_" + value;
             }
             return value;
+        }
+
+        public void SendValues(string[] keys)
+        {
+            if (keys.Length == 0) return;
+
+            if (keys.Length == 1)
+            {
+                Keyboard.Sendkeys(keys[0]);
+            }
+            if (keys.Length == 2)
+            {
+                Keyboard.Sendkeys(keys[0], keys[1]);
+            }
+            if (keys.Length == 3)
+            {
+                Keyboard.Sendkeys(keys[0], keys[1], keys[2]);
+            }
         }
 
         public void MakeDraggable(System.Windows.UIElement moveThisElement, System.Windows.UIElement movedByElement)
