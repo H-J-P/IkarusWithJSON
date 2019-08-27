@@ -143,13 +143,13 @@ namespace Ikarus
                 DcsID.Visibility = Visibility.Hidden;
                 DeviceID.Visibility = Visibility.Hidden;
                 ButtonID.Visibility = Visibility.Hidden;
-                //Key_board.Visibility = Visibility.Visible;
+                Keyboards.Visibility = Visibility.Visible;
                 Label_Input.Visibility = Visibility.Hidden;
                 Label_Output.Visibility = Visibility.Hidden;
                 Label_DcsID.Visibility = Visibility.Hidden;
                 Label_DeviceID.Visibility = Visibility.Hidden;
                 Label_ButtonID.Visibility = Visibility.Hidden;
-                //Label_Keyboards.Visibility = Visibility.Visible;
+                Label_Keyboards.Visibility = Visibility.Visible;
             }
             else
             {
@@ -158,12 +158,13 @@ namespace Ikarus
                 DcsID.Visibility = Visibility.Visible;
                 DeviceID.Visibility = Visibility.Visible;
                 ButtonID.Visibility = Visibility.Visible;
-                //Key_board.Visibility = Visibility.Hidden;
+                Keyboards.Visibility = Visibility.Hidden;
                 Label_Input.Visibility = Visibility.Visible;
                 Label_Output.Visibility = Visibility.Visible;
                 Label_DcsID.Visibility = Visibility.Visible;
                 Label_DeviceID.Visibility = Visibility.Visible;
                 Label_ButtonID.Visibility = Visibility.Visible;
+                Label_Keyboards.Visibility = Visibility.Hidden;
             }
         }
 

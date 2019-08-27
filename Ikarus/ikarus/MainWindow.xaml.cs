@@ -42,6 +42,8 @@ namespace Ikarus
             running,
             stop
         }
+        public List<string> genlist { get; set; }
+
         private State timerstate = State.initConfig;
 
         private bool cleanupMemory = true;
@@ -2696,6 +2698,25 @@ namespace Ikarus
             instID = _instID;
             classname = _classname;
             windowID = _windowID;
+        }
+    }
+
+    public class TypeList : List<string>
+    {
+        public TypeList()
+        {
+            this.Add("ID");
+            this.Add("Special");
+        }
+    }
+
+
+    public class StatusList : List<string>
+    {
+        public StatusList()
+        {
+            this.Add("0");
+            this.Add("1");
         }
     }
 

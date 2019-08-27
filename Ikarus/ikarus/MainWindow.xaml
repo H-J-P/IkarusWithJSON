@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:staticData="clr-namespace:Ikarus"
         x:Name="Main"
         Title="Ikarus"
         Width="1130"
@@ -13,6 +14,10 @@
         Icon="Assets/Ikarus_64.ico"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
+    <Window.Resources>
+        <staticData:StatusList x:Key="StatusList"/>
+        <staticData:TypeList x:Key="TypeList"/>
+    </Window.Resources>
     <Grid>
         <Grid >
             <Grid.ColumnDefinitions>
@@ -222,9 +227,25 @@
                                 <DataGridTextColumn Width="80"
                                                     Binding="{Binding Format}"
                                                     Header="Format " />
-                                <DataGridTextColumn Width="80"
+                                <DataGridTextColumn Width="80" Visibility="Hidden"
                                                     Binding="{Binding negateValue}"
                                                     Header="negateValue " />
+                                
+                                <DataGridTemplateColumn Header="negateValue">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+
+                                            <ComboBox x:Name="NegateValues"
+                                                      Visibility="Visible" 
+                                                      ItemsSource="{StaticResource StatusList}"
+                                                      SelectedItem="{Binding negateValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                                      >
+                                            </ComboBox>
+
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
                                 <DataGridTemplateColumn Header="Test">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -476,11 +497,25 @@
                                                 Width="200"
                                                 Binding="{Binding FilePictureOff}"
                                                 Header="Image OFF" />
-                            <DataGridTextColumn x:Name="Type"
+                            <DataGridTextColumn x:Name="Type" Visibility="Hidden"
                                                 Width="120"
                                                 Binding="{Binding Type}"
                                                 Header="Type" />
-                            <DataGridTextColumn x:Name="IDType"
+                            <DataGridTemplateColumn Header="Type">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <ComboBox
+                                                      Visibility="Visible" 
+                                                      ItemsSource="{StaticResource TypeList}"
+                                                      SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                                      >
+                                        </ComboBox>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="IDType"
                                                 Width="80"
                                                 Binding="{Binding IDType}"
                                                 Header="ID" />
@@ -488,10 +523,24 @@
                                                 Width="80"
                                                 Binding="{Binding Format}"
                                                 Header="Format" />
-                            <DataGridTextColumn x:Name="negateValue"
+                            <DataGridTextColumn x:Name="negateValue" Visibility="Hidden"
                                                 Width="80"
                                                 Binding="{Binding negateValue}"
                                                 Header="negateValue" />
+                            <DataGridTemplateColumn Header="negateValue">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <ComboBox
+                                                      Visibility="Visible" 
+                                                      ItemsSource="{StaticResource StatusList}"
+                                                      SelectedItem="{Binding negateValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                                      >
+                                        </ComboBox>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
 
