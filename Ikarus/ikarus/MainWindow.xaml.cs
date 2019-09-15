@@ -14,9 +14,9 @@ using System.Windows.Threading;
 using System.Drawing.Imaging;
 using System.Reflection;
 using Newtonsoft.Json;
-using System.Text.RegularExpressions;
-using WindowsInput.Native;
-using WindowsInput;
+//using System.Text.RegularExpressions;
+//using WindowsInput.Native;
+//using WindowsInput;
 
 
 namespace Ikarus
@@ -2710,6 +2710,16 @@ namespace Ikarus
         }
     }
 
+    public class TypeListInstruments : List<string>
+    {
+        public TypeListInstruments()
+        {
+            this.Add("ID");
+            this.Add("ListIndication");
+            this.Add("RadioDevice");
+            this.Add("Special");
+        }
+    }
 
     public class StatusList : List<string>
     {

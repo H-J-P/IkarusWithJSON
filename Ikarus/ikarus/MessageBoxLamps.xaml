@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Ikarus.MessageBoxLamps"
         Title="Dialog Lamps"
-        Width="572"
+        Width="636"
         Height="258"
         Opacity="0.9"
         ResizeMode="NoResize"
         Topmost="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow">
-    <Grid>
+    <Grid Margin="0,0,0,0" HorizontalAlignment="Left" Width="636" Height="230" VerticalAlignment="Top">
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                 <GradientStop Offset="0" Color="Black" />
@@ -24,7 +24,7 @@
                Content="Panel"
                Foreground="#FFFFFEFE" RenderTransformOrigin="-0.393,0.375" />
         <ComboBox x:Name="WindowID"
-                  Width="487"
+                  Width="547"
                   Height="26"
                   Margin="67,20,0,0"
                   HorizontalAlignment="Left"
@@ -110,16 +110,16 @@
                 Height="24"
                 VerticalAlignment="Top"
                 Click="Button_Click"
-                Content="Transmit" Margin="66,199,0,0" HorizontalAlignment="Left" Width="488" />
+                Content="Transmit" Margin="389,193,0,0" HorizontalAlignment="Left" Width="225" />
         <TextBox x:Name="PosX"
-                 Width="48"
+                 Width="80"
                  Height="23"
                  Margin="389,108,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TextWrapping="Wrap" />
         <TextBox x:Name="PosY"
-                 Width="48"
+                 Width="80"
                  Height="23"
                  Margin="389,137,0,0"
                  HorizontalAlignment="Left"
@@ -138,33 +138,33 @@
                Content="Pos Y"
                Foreground="#FFFFFEFE" />
         <TextBox x:Name="Size"
-                 Width="48"
+                 Width="80"
                  Height="23"
-                 Margin="508,108,0,0"
+                 Margin="532,108,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TextWrapping="Wrap" />
         <Label Height="16"
-               Margin="459,111,0,0"
+               Margin="488,111,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Size"
                Foreground="#FFFFFEFE" />
         <TextBox x:Name="Rotate"
                  Height="23"
-                 Margin="508,137,0,0"
+                 Margin="532,137,0,0"
                  VerticalAlignment="Top"
-                 TextWrapping="Wrap" RenderTransformOrigin="1.875,0.391" HorizontalAlignment="Left" Width="48" />
+                 TextWrapping="Wrap" RenderTransformOrigin="1.875,0.391" HorizontalAlignment="Left" Width="80" />
         <Label Height="16"
-               Margin="459,140,0,0"
+               Margin="489,140,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Rotate"
                Foreground="#FFFFFEFE"
                RenderTransformOrigin="-0.81,0.625" />
         <TextBox x:Name="NameFct"
-            Margin="68,79,0,0"
-            TextWrapping="Wrap" RenderTransformOrigin="1.875,0.391" HorizontalAlignment="Left" Width="488" Height="23" VerticalAlignment="Top" />
+            Margin="66,79,0,0"
+            TextWrapping="Wrap" RenderTransformOrigin="1.875,0.391" HorizontalAlignment="Left" Width="546" Height="23" VerticalAlignment="Top" />
         <Label
             Margin="11,83,0,0"
             HorizontalAlignment="Left"
@@ -209,7 +209,7 @@
             Foreground="#FFFFFEFE"
             RenderTransformOrigin="-0.81,0.625" Width="14" Height="16" VerticalAlignment="Top" />
         <TextBox x:Name="Format"
-            Width="48"
+            Width="80"
             Margin="389,165,0,0"
             HorizontalAlignment="Left"
             TextWrapping="Wrap" Height="23" VerticalAlignment="Top" />
@@ -220,14 +220,14 @@
             Foreground="#FFFFFEFE"
             RenderTransformOrigin="-0.81,0.625" Width="47" Height="16" VerticalAlignment="Top" />
         <Label x:Name="Label_negateValue"
-            Margin="459,168,0,0"
+            Margin="488,168,0,0"
             HorizontalAlignment="Left"
             Content="Negate"
             Foreground="#FFFFFEFE"
             RenderTransformOrigin="-0.81,0.625" Width="38" Height="16" VerticalAlignment="Top" />
         <ComboBox x:Name="NegateValue"
-                  Width="46"
-                  Margin="508,165,0,0"
+                  Width="80"
+                  Margin="534,165,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   Visibility="Visible">

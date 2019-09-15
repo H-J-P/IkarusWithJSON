@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
-using WindowsInput.Native;
-using WindowsInput;
+//using WindowsInput.Native;
+//using WindowsInput;
 using System.Runtime.InteropServices;
 using System.Threading;
 

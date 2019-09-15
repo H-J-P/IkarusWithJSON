@@ -17,6 +17,7 @@
     <Window.Resources>
         <staticData:StatusList x:Key="StatusList"/>
         <staticData:TypeList x:Key="TypeList"/>
+        <staticData:TypeListInstruments x:Key="TypeListInstruments"/>
     </Window.Resources>
     <Grid>
         <Grid >
@@ -218,9 +219,23 @@
                                 <DataGridTextColumn Width="40"
                                                     Binding="{Binding Out}"
                                                     Header="Out °" />
-                                <DataGridTextColumn Width="120"
+                                <DataGridTextColumn Width="120" Visibility="Hidden"
                                                     Binding="{Binding Type}"
                                                     Header="Type " />
+                                <DataGridTemplateColumn Header="Type">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+
+                                            <ComboBox
+                                                      Visibility="Visible" 
+                                                      ItemsSource="{StaticResource TypeListInstruments}"
+                                                      SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                                      >
+                                            </ComboBox>
+
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                                 <DataGridTextColumn Width="80"
                                                     Binding="{Binding ID}"
                                                     Header="ID " />
