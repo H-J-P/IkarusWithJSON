@@ -1,0 +1,312 @@
+<?xml version="1.0" standalone="yes"?>
+<DataSet1 xmlns="http://tempuri.org/DataSet1.xsd">
+  <Instruments>
+    <IDInst>2</IDInst>
+    <Name>ADI</Name>
+    <Class>FA18C_ADI</Class>
+    <PosX>1350</PosX>
+    <PosY>600</PosY>
+    <Size>230</Size>
+    <Rotate>0</Rotate>
+    <ImageFrame>-</ImageFrame>
+    <ImageLight>-</ImageLight>
+    <Reactivate>false</Reactivate>
+    <WindowID>1</WindowID>
+  </Instruments>
+  <Instruments>
+    <IDInst>3</IDInst>
+    <Name>Display</Name>
+    <Class>DisplayDotMatrix</Class>
+    <PosX>1366</PosX>
+    <PosY>834</PosY>
+    <Size>200</Size>
+    <Rotate>0</Rotate>
+    <ImageFrame>-</ImageFrame>
+    <ImageLight>-</ImageLight>
+    <Reactivate>false</Reactivate>
+    <WindowID>1</WindowID>
+  </Instruments>
+  <Functions>
+    <IDInst>2</IDInst>
+    <IDFct>1</IDFct>
+    <Name>-</Name>
+    <Arg_number>10</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>0.0,1.0</Input>
+    <Output>0,10</Output>
+    <Ascii>false</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Functions>
+    <IDInst>2</IDInst>
+    <IDFct>2</IDFct>
+    <Name>-</Name>
+    <Arg_number>20</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>0.0,1.0</Input>
+    <Output>0,10</Output>
+    <Ascii>false</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Functions>
+    <IDInst>2</IDInst>
+    <IDFct>3</IDFct>
+    <Name>-</Name>
+    <Arg_number>30</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>0.0,1.0</Input>
+    <Output>0,10</Output>
+    <Ascii>false</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Functions>
+    <IDInst>2</IDInst>
+    <IDFct>4</IDFct>
+    <Name>-</Name>
+    <Arg_number>40</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>0.0,1.0</Input>
+    <Output>0,10</Output>
+    <Ascii>false</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Functions>
+    <IDInst>2</IDInst>
+    <IDFct>5</IDFct>
+    <Name>-</Name>
+    <Arg_number>50</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>0.0,1.0</Input>
+    <Output>0,10</Output>
+    <Ascii>false</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Functions>
+    <IDInst>2</IDInst>
+    <IDFct>6</IDFct>
+    <Name>-</Name>
+    <Arg_number>60</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>0.0,1.0</Input>
+    <Output>0,10</Output>
+    <Ascii>false</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Functions>
+    <IDInst>2</IDInst>
+    <IDFct>7</IDFct>
+    <Name>-</Name>
+    <Arg_number>70</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>0.0,1.0</Input>
+    <Output>0,10</Output>
+    <Ascii>false</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Functions>
+    <IDInst>2</IDInst>
+    <IDFct>8</IDFct>
+    <Name>-</Name>
+    <Arg_number>80</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>0.0,1.0</Input>
+    <Output>0,10</Output>
+    <Ascii>false</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Functions>
+    <IDInst>3</IDInst>
+    <IDFct>1</IDFct>
+    <Name>Display Test</Name>
+    <Arg_number>90</Arg_number>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <Offset>0</Offset>
+    <Input>ABF9AB</Input>
+    <Output>6</Output>
+    <Ascii>true</Ascii>
+    <AsciiValue />
+    <OldAsciiValue>-</OldAsciiValue>
+    <In />
+    <Out />
+    <Type>ID</Type>
+    <ID>-</ID>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Functions>
+  <Lamps>
+    <ID>1</ID>
+    <Class>LampOnOff</Class>
+    <Arg_number>254</Arg_number>
+    <Name>254 - M21 ARMED</Name>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <FilePictureOn>M2KC_Autopilot_PANNE_On.png</FilePictureOn>
+    <FilePictureOff>M2KC_Autopilot_PANNE_Off.png</FilePictureOff>
+    <PosX>1676</PosX>
+    <PosY>687</PosY>
+    <Size>60</Size>
+    <Rotate>45</Rotate>
+    <WindowID>1</WindowID>
+    <Type>ID</Type>
+    <IDType>-</IDType>
+    <Format>-</Format>
+    <negateValue>0</negateValue>
+  </Lamps>
+  <Switches>
+    <ID>1</ID>
+    <Class>SwitchOffOnVK</Class>
+    <ClickabledataID>101</ClickabledataID>
+    <Name>Anti-Collision Lights ON/OFF</Name>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <FilePictureOn>SwitchOn.png</FilePictureOn>
+    <FilePictureOff>SwitchOff.png</FilePictureOff>
+    <FilePicture2On>-</FilePicture2On>
+    <Input>0.0,1.0</Input>
+    <Output>0.0,1.0</Output>
+    <PosX>1610</PosX>
+    <PosY>757</PosY>
+    <Size>55</Size>
+    <Rotate>90</Rotate>
+    <Event>false</Event>
+    <DontReset>false</DontReset>
+    <WindowID>1</WindowID>
+    <DcsID>225</DcsID>
+    <DeviceID>7</DeviceID>
+    <ButtonID>4</ButtonID>
+    <Keyboard>LCRL+1,LCRL+2</Keyboard>
+  </Switches>
+  <Switches>
+    <ID>2</ID>
+    <Class>RotaryUpdatable</Class>
+    <ClickabledataID>193</ClickabledataID>
+    <Name>ADF Tune control {0.0,1.0} in 0.1 Steps</Name>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <FilePictureOn>AV8BNA_Rotary2.png</FilePictureOn>
+    <FilePictureOff>-</FilePictureOff>
+    <FilePicture2On>-</FilePicture2On>
+    <Input>0.0,1.0,0.1</Input>
+    <Output> 45, 360</Output>
+    <PosX>1794</PosX>
+    <PosY>781</PosY>
+    <Size>100</Size>
+    <Rotate>45</Rotate>
+    <Event>false</Event>
+    <DontReset>false</DontReset>
+    <WindowID>1</WindowID>
+    <DcsID>39</DcsID>
+    <DeviceID>27</DeviceID>
+    <ButtonID>3</ButtonID>
+    <Keyboard>-</Keyboard>
+  </Switches>
+  <Switches>
+    <ID>3</ID>
+    <Class>ButtonWithoutRelease</Class>
+    <ClickabledataID>0</ClickabledataID>
+    <Name>Battery</Name>
+    <Value>0</Value>
+    <OldValue>1</OldValue>
+    <FilePictureOn>M2KC_Button_G_On.png</FilePictureOn>
+    <FilePictureOff>M2KC_Button_G_Off.png</FilePictureOff>
+    <FilePicture2On>-</FilePicture2On>
+    <Input>0.0,1.0</Input>
+    <Output>0.0,1.0</Output>
+    <PosX>1822</PosX>
+    <PosY>899</PosY>
+    <Size>45</Size>
+    <Rotate>0</Rotate>
+    <Event>false</Event>
+    <DontReset>false</DontReset>
+    <WindowID>1</WindowID>
+    <DcsID>219</DcsID>
+  </Switches>
+  <Parameter>
+    <FileBackground>BackGround.png</FileBackground>
+  </Parameter>
+  <Window>
+    <WindowID>1</WindowID>
+    <Name>Main</Name>
+    <PosX>0</PosX>
+    <PosY>0</PosY>
+    <Height>1080</Height>
+    <Width>1920</Width>
+    <Background>-</Background>
+    <BackgroundNight>-</BackgroundNight>
+    <Refresh>false</Refresh>
+    <LightColor>95E295</LightColor>
+  </Window>
+</DataSet1>
